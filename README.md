@@ -4,7 +4,7 @@
 
   <strong>JavaScript library to generate PoW for mCaptcha</strong>
 
-  [![Documentation](https://img.shields.io/badge/docs-master-blue)](https://mcaptcha.github.io/mCaptcha/browser/index.html)
+  [![Documentation](https://img.shields.io/badge/docs-master-blue)](https://mcaptcha.github.io/mCaptcha/mCaptcha_browser/index.html)
 ![CI (Linux)](<https://github.com/mCaptcha/browser/workflows/CI%20(Linux)/badge.svg>)
 [![dependency status](https://deps.rs/repo/github/mCaptcha/browser/status.svg)](https://deps.rs/repo/github/mCaptcha/browser)
 <br />
