@@ -2,9 +2,10 @@
 
   <h1>PoW JavaScript library</h1>
 
-  <strong>JavaScript library to generate PoW for mCaptcha</strong>
+<strong>JavaScript library to generate PoW for mCaptcha</strong>
 
-  [![Documentation](https://img.shields.io/badge/docs-master-blue)](https://mcaptcha.github.io/mCaptcha/mCaptcha_browser/index.html)
+[![Documentation](https://img.shields.io/badge/docs-master-blue)](https://mcaptcha.github.io/browser/mCaptcha_browser/index.html)
+[![0.1.0](https://img.shields.io/badge/docs-0.1.0-yellow)](https://mcaptcha.org/docs/api/browser)
 ![CI (Linux)](<https://github.com/mCaptcha/browser/workflows/CI%20(Linux)/badge.svg>)
 [![dependency status](https://deps.rs/repo/github/mCaptcha/browser/status.svg)](https://deps.rs/repo/github/mCaptcha/browser)
 <br />
@@ -18,13 +19,14 @@ moment. Please refer to https://github.com/rustwasm/wasm-pack/issues/886
 for more information.
 
 ### Optimization:
+
 ```
 $ /path/to/wasm-opt pkg/pow_bg.wasm -o pkg/pow_bg.wasm -O --enable-mutable-globals
 ```
+
 My `/path/to/wasm-opt` is `~/.cache/.wasm-pack/wasm-opt-4d7a65327e9363b7/wasm-opt`
 
-
-----
+---
 
 <h2>  Default documentation provided by Rust wasm: </h2>
 
@@ -34,7 +36,8 @@ My `/path/to/wasm-opt` is `~/.cache/.wasm-pack/wasm-opt-4d7a65327e9363b7/wasm-op
     <a href="https://discordapp.com/channels/442252698964721669/443151097398296587">Chat</a>
   </h3>
 
-  <sub>Built with 🦀🕸 by <a href="https://rustwasm.github.io/">The Rust and WebAssembly Working Group</a></sub>
+<sub>Built with 🦀🕸 by <a href="https://rustwasm.github.io/">The Rust and WebAssembly Working Group</a></sub>
+
 </div>
 
 ## About
@@ -81,9 +84,9 @@ wasm-pack publish
 
 ## 🔋 Batteries Included
 
-* [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen) for communicating
+- [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen) for communicating
   between WebAssembly and JavaScript.
-* [`console_error_panic_hook`](https://github.com/rustwasm/console_error_panic_hook)
+- [`console_error_panic_hook`](https://github.com/rustwasm/console_error_panic_hook)
   for logging panic messages to the developer console.
-* [`wee_alloc`](https://github.com/rustwasm/wee_alloc), an allocator optimized
+- [`wee_alloc`](https://github.com/rustwasm/wee_alloc), an allocator optimized
   for small code size.
