@@ -32,6 +32,19 @@ jobs:
           profile: minimal
           override: true
 
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Install JavaScript Dependencies
+        run: yarn install
+
+      - name: Build frontend
+        run: yarn build
+
+      - name: Run the tests
+        run: yarn test
+
       - name: Generate coverage file
         if: (github.ref == 'refs/heads/master' || github.event_name == 'pull_request')
         uses: actions-rs/tarpaulin@v0.1
