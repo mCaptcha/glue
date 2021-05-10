@@ -9,8 +9,37 @@
 //! mCaptcha workflow in the frontend is simple.
 //! 1. Call service to get a proof of work(PoW) configuration
 //! 2. Call into mCaptcha to get PoW
-//! 3. Send PoW to your service
+//! 3. Send PoW to mCaptcha service
+//! 4. If proof is valid, the service will return a token to the client
+//! 5. Submit token to your backend along with your app data(if any)
+//! 6. In backend, validate client's token with mCaptcha service
 //!
+//! ## Example:
+//!
+//! generate proof-of-work
+//! ```rust
+//! fn main() {
+//!    use mcaptcha_browser::*;
+//!    use pow_sha256::*;
+//!
+//!
+//!    // salt using which PoW should be computed
+//!    const SALT: &str = "yrandomsaltisnotlongenoug";
+//!    // one-time phrase over which PoW should be computed
+//!    const PHRASE: &str = "ironmansucks";
+//!    // and the difficulty factor
+//!    const DIFFICULTY: u32 = 1000;
+//!
+//!    // currently gen_pow() returns a JSON formated string to better communicate
+//!    // with JavaScript. See [PoW<T>][pow_sha256::PoW] for schema
+//!    let serialised_work = gen_pow(SALT.into(), PHRASE.into(), DIFFICULTY);
+//!
+//!    let work: PoW<String> = serde_json::from_str(&&serialised_work).unwrap();
+//!    let config = ConfigBuilder::default().salt(SALT.into()).build().unwrap();
+//!    assert!(config.is_valid_proof(&work, &PHRASE.to_string()));
+//!    assert!(config.is_sufficient_difficulty(&work, DIFFICULTY));
+//! }
+//! ```
 
 use wasm_bindgen::prelude::*;
 
@@ -20,36 +49,57 @@ use wasm_bindgen::prelude::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-use pow_sha256::PoW;
+use pow_sha256::ConfigBuilder;
 
+/// generate proof-of-work
+/// ```rust
+/// fn main() {
+///    use mcaptcha_browser::*;
+///    use pow_sha256::*;
+///
+///
+///    // salt using which PoW should be computed
+///    const SALT: &str = "yrandomsaltisnotlongenoug";
+///    // one-time phrase over which PoW should be computed
+///    const PHRASE: &str = "ironmansucks";
+///    // and the difficulty factor
+///    const DIFFICULTY: u32 = 1000;
+///
+///    // currently gen_pow() returns a JSON formated string to better communicate
+///    // with JavaScript. See [PoW<T>][pow_sha256::PoW] for schema
+///    let serialised_work = gen_pow(SALT.into(), PHRASE.into(), DIFFICULTY);
+///
+///    let work: PoW<String> = serde_json::from_str(&&serialised_work).unwrap();
+///    let config = ConfigBuilder::default().salt(SALT.into()).build().unwrap();
+///    assert!(config.is_valid_proof(&work, &PHRASE.to_string()));
+///    assert!(config.is_sufficient_difficulty(&work, DIFFICULTY));
+/// }
+/// ```
 #[wasm_bindgen]
-pub fn gen_pow(difficulty_factor: u32, secret: String) -> String {
-    let difficulty = u128::max_value() - u128::max_value() / difficulty_factor as u128;
-    let a = PoW::prove_work(&secret.as_bytes().to_vec(), difficulty).unwrap();
-    let payload = serde_json::to_string(&a).unwrap();
+pub fn gen_pow(salt: String, phrase: String, difficulty_factor: u32) -> String {
+    let config = ConfigBuilder::default().salt(salt).build().unwrap();
+
+    let work = config.prove_work(&phrase, difficulty_factor).unwrap();
+
+    let payload = serde_json::to_string(&work).unwrap();
     payload
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use pow_sha256::PoW;
 
+    const SALT: &str = "yrandomsaltisnotlongenoug";
+    const PHRASE: &str = "ironmansucks";
+    const DIFFICULTY: u32 = 1000;
     #[test]
     fn it_works() {
-        let payload = gen_pow(500, "MFsqLMZId629Dh2hrtux2Qdn3gBzCaSt".into());
-        assert_eq!("{\"nonce\":312,\"result\":\"340175381422106372296624206295814425082\",\"_spook\":null}",    &payload );
+        let serialised_work = gen_pow(SALT.into(), PHRASE.into(), DIFFICULTY);
+        let work: PoW<String> = serde_json::from_str(&&serialised_work).unwrap();
 
-        let payload = gen_pow(1_000, "MFsqLMZId629Dh2hrtux2Qdn3gBzCaSt".into());
-        assert_eq!("{\"nonce\":312,\"result\":\"340175381422106372296624206295814425082\",\"_spook\":null}", &payload);
-
-        let payload = gen_pow(2_000, "MFsqLMZId629Dh2hrtux2Qdn3gBzCaSt".into());
-        assert_eq!(&payload, "{\"nonce\":312,\"result\":\"340175381422106372296624206295814425082\",\"_spook\":null}");
-
-        let payload = gen_pow(100_000, "MFsqLMZId629Dh2hrtux2Qdn3gBzCaSt".into());
-        assert_eq!(&payload, "{\"nonce\":59930,\"result\":\"340281433562218714678373578791487113813\",\"_spook\":null}");
-
-        let payload = gen_pow(1_000_000, "MFsqLMZId629Dh2hrtux2Qdn3gBzCaSt".into());
-
-        assert_eq!(&payload,"{\"nonce\":1902451,\"result\":\"340282308726676882310449308394036800665\",\"_spook\":null}");
+        let config = ConfigBuilder::default().salt(SALT.into()).build().unwrap();
+        assert!(config.is_valid_proof(&work, &PHRASE.to_string()));
+        assert!(config.is_sufficient_difficulty(&work, DIFFICULTY));
     }
 }
