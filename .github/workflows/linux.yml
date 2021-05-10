@@ -73,14 +73,14 @@ jobs:
           args: --all --all-features --no-fail-fast
 
       - name: generate documentation
-        if: matrix.version == 'stable' && (github.repository == 'mCaptcha/browser')
+        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
         uses: actions-rs/cargo@v1
         with:
           command: doc
           args: --no-deps --workspace --all-features
 
       - name: Deploy to GitHub Pages
-        if: matrix.version == 'stable' && (github.repository == 'mCaptcha/browser')
+        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
