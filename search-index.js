@@ -1,4 +1,4 @@
 var searchIndex = JSON.parse('{\
-"mCaptcha_browser":{"doc":"mCaptcha is a proof of work based Denaial-of-Service …","i":[[5,"gen_pow","mCaptcha_browser","",null,[[["string",3]],["string",3]]],[5,"__wasm_bindgen_generated_gen_pow","","",null,[[]]]],"p":[]}\
+"mcaptcha_browser":{"doc":"mCaptcha is a proof of work based Denaial-of-Service …","i":[[3,"Work","mcaptcha_browser","",null,null],[12,"result","","",0,null],[12,"nonce","","",0,null],[5,"gen_pow","","generate proof-of-work",null,[[["u32",15],["string",3]],["string",3]]],[5,"__wasm_bindgen_generated_gen_pow","","generate proof-of-work",null,[[]]],[11,"from","","",0,[[]]],[11,"into","","",0,[[]]],[11,"borrow","","",0,[[]]],[11,"borrow_mut","","",0,[[]]],[11,"try_from","","",0,[[],["result",4]]],[11,"try_into","","",0,[[],["result",4]]],[11,"type_id","","",0,[[],["typeid",3]]],[11,"from","","",0,[[["pow",3],["string",3]]]],[11,"serialize","","",0,[[],["result",4]]],[11,"deserialize","","",0,[[],["result",4]]]],"p":[[3,"Work"]]}\
 }');
 addSearchOptions(searchIndex);initSearch(searchIndex);
