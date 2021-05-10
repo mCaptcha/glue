@@ -10,6 +10,7 @@
 //! 1. Call service to get a proof of work(PoW) configuration
 //! 2. Call into mCaptcha to get PoW
 //! 3. Send PoW to your service
+//!
 
 use wasm_bindgen::prelude::*;
 
