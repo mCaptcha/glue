@@ -1,0 +1,46 @@
+{
+  "author": "Aravinth Manivannan <realaravinth@batsense.net>",
+  "name": "mcaptcha-browser",
+  "license": "(MIT OR Apache-2.0)",
+  "keywords": ["mCaptcha", "CAPTCHA", "proof of work"],
+  "homepage": "https://mcaptcha.org",
+  "bugs": {
+    "url": "https://github.com/mCaptcha/browser/issues",
+    "email": "realaravinth@batsense.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mCaptcha/browser.git"
+  },
+  "version": "0.1.0",
+  "scripts": {
+    "build": "rimraf dist pkg && webpack --mode production",
+    "start": "rimraf dist pkg && webpack-dev-server --open -d",
+    "test": "cargo test && wasm-pack test --headless"
+  },
+  "devDependencies": {
+    "@wasm-tool/wasm-pack-plugin": "^1.1.0",
+    "copy-webpack-plugin": "^5.0.3",
+    "rimraf": "^3.0.0",
+    "@types/jest": "^26.0.23",
+    "@types/jsdom": "^16.2.10",
+    "@types/node": "^15.0.2",
+    "@types/sinon": "^10.0.0",
+    "css-loader": "^5.2.4",
+    "css-minimizer-webpack-plugin": "^2.0.0",
+    "dart-sass": "^1.25.0",
+    "jest": "^26.6.3",
+    "jest-fetch-mock": "^3.0.3",
+    "jsdom": "^16.5.3",
+    "mini-css-extract-plugin": "^1.6.0",
+    "sass-loader": "^11.0.1",
+    "sinon": "^10.0.0",
+    "ts-jest": "^26.5.6",
+    "ts-loader": "^8.0.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.1.14"
+  }
+}

@@ -55,6 +55,16 @@ jobs:
       - name: run wasm-pack tests on firefox
         run: wasm-pack test --release --headless --chrome
 
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Install JavaScript Dependencies
+        run: yarn install
+
+      - name: Build Frontend
+        run: yarn build
+
       - name: tests
         uses: actions-rs/cargo@v1
         timeout-minutes: 40
