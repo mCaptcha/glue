@@ -34,13 +34,22 @@
 //!    // with JavaScript. See [PoW<T>][pow_sha256::PoW] for schema
 //!    let serialised_work = gen_pow(SALT.into(), PHRASE.into(), DIFFICULTY);
 //!
-//!    let work: PoW<String> = serde_json::from_str(&&serialised_work).unwrap();
+//!
+//!    let work: Work = serde_json::from_str(&serialised_work).unwrap();
+//!
+//!    let work = PoWBuilder::default()
+//!        .result(work.result)
+//!        .nonce(work.nonce)
+//!        .build()
+//!        .unwrap();
+//!
 //!    let config = ConfigBuilder::default().salt(SALT.into()).build().unwrap();
 //!    assert!(config.is_valid_proof(&work, &PHRASE.to_string()));
 //!    assert!(config.is_sufficient_difficulty(&work, DIFFICULTY));
 //! }
 //! ```
 
+use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
@@ -49,7 +58,22 @@ use wasm_bindgen::prelude::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-use pow_sha256::ConfigBuilder;
+use pow_sha256::{ConfigBuilder, PoW};
+
+#[derive(Deserialize, Serialize)]
+pub struct Work {
+    pub result: String,
+    pub nonce: u64,
+}
+
+impl From<PoW<String>> for Work {
+    fn from(p: PoW<String>) -> Self {
+        Work {
+            result: p.result,
+            nonce: p.nonce,
+        }
+    }
+}
 
 /// generate proof-of-work
 /// ```rust
@@ -69,7 +93,15 @@ use pow_sha256::ConfigBuilder;
 ///    // with JavaScript. See [PoW<T>][pow_sha256::PoW] for schema
 ///    let serialised_work = gen_pow(SALT.into(), PHRASE.into(), DIFFICULTY);
 ///
-///    let work: PoW<String> = serde_json::from_str(&&serialised_work).unwrap();
+///
+///    let work: Work = serde_json::from_str(&serialised_work).unwrap();
+///    
+///    let work = PoWBuilder::default()
+///        .result(work.result)
+///        .nonce(work.nonce)
+///        .build()
+///        .unwrap();
+///    
 ///    let config = ConfigBuilder::default().salt(SALT.into()).build().unwrap();
 ///    assert!(config.is_valid_proof(&work, &PHRASE.to_string()));
 ///    assert!(config.is_sufficient_difficulty(&work, DIFFICULTY));
@@ -80,6 +112,7 @@ pub fn gen_pow(salt: String, phrase: String, difficulty_factor: u32) -> String {
     let config = ConfigBuilder::default().salt(salt).build().unwrap();
 
     let work = config.prove_work(&phrase, difficulty_factor).unwrap();
+    let work: Work = work.into();
 
     let payload = serde_json::to_string(&work).unwrap();
     payload
@@ -88,7 +121,7 @@ pub fn gen_pow(salt: String, phrase: String, difficulty_factor: u32) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use pow_sha256::PoW;
+    use pow_sha256::PoWBuilder;
 
     const SALT: &str = "yrandomsaltisnotlongenoug";
     const PHRASE: &str = "ironmansucks";
@@ -96,7 +129,13 @@ mod tests {
     #[test]
     fn it_works() {
         let serialised_work = gen_pow(SALT.into(), PHRASE.into(), DIFFICULTY);
-        let work: PoW<String> = serde_json::from_str(&&serialised_work).unwrap();
+        let work: Work = serde_json::from_str(&serialised_work).unwrap();
+
+        let work = PoWBuilder::default()
+            .result(work.result)
+            .nonce(work.nonce)
+            .build()
+            .unwrap();
 
         let config = ConfigBuilder::default().salt(SALT.into()).build().unwrap();
         assert!(config.is_valid_proof(&work, &PHRASE.to_string()));

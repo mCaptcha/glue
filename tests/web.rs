@@ -16,7 +16,14 @@ fn pow_generation_works() {
     const PHRASE: &str = "ironmansucks";
     const DIFFICULTY: u32 = 1000;
     let serialised_work = gen_pow(SALT.into(), PHRASE.into(), DIFFICULTY);
-    let work: PoW<String> = serde_json::from_str(&&serialised_work).unwrap();
+
+    let work: Work = serde_json::from_str(&serialised_work).unwrap();
+
+    let work = PoWBuilder::default()
+        .result(work.result)
+        .nonce(work.nonce)
+        .build()
+        .unwrap();
 
     let config = ConfigBuilder::default().salt(SALT.into()).build().unwrap();
     assert!(config.is_valid_proof(&work, &PHRASE.to_string()));
