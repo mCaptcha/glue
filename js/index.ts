@@ -10,8 +10,27 @@
  */
 
 import createWidget from './createWidget';
+import prove from './prove';
+import fetchPoWConfig from './fetchPoWConfig';
+import sendWork from './sendWork';
+import insertResult from './insertResult';
 
 createWidget();
+
+export const solveCaptchaRunner = async (_e: Event) => {
+  // steps:
+  // 1. get config
+  // 2. prove work
+  // 3. submit work
+  // 4. insert token
+
+  alert('x');
+  console.log('running');
+  const config = await fetchPoWConfig();
+  const proof = await prove(config);
+  const token = await sendWork(proof);
+  insertResult(token);
+};
 
 export * from './prove';
 export * from './const';

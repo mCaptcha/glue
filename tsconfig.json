@@ -37,7 +37,8 @@
     "docs",
     "jest.config.ts",
     "**/*.test.ts",
-    "tmp"
+    "tmp",
+    "**/*setupTests"
   ],
 
   "typedocOptions": {

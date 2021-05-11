@@ -22,7 +22,7 @@ export type PoWConfig = {
   salt: string;
 };
 
-/** 
+/**
  * fetch proof-of-work configuration
  * @returns {PoWConfig} pow config
  * */
@@ -31,10 +31,7 @@ export const fetchPoWConfig = async () => {
     key: CONST.sitekey(),
   };
 
-  const res = await fetch(
-    `${CONST.provider.toString()}${CONST.ROUTES.getConfig}`,
-    genJsonPayload(payload),
-  );
+  const res = await fetch(CONST.ROUTES.getConfig(), genJsonPayload(payload));
   if (res.ok) {
     alert('success');
     const config: PoWConfig = await res.json();

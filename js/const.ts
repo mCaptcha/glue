@@ -18,6 +18,9 @@ export const mcaptchaContainer = () => {
   return (() => {
     if (container === null || container === undefined) {
       container = <HTMLDivElement>document.getElementById(mcaptchaContainerID);
+      if (container === null || container === undefined) {
+        throw new Error(`Define div element with id ${mcaptchaContainerID}`);
+      }
     }
     return container;
   })();
@@ -29,6 +32,9 @@ export const sitekey = () => {
   return (() => {
     if (sitekey === null || sitekey === undefined) {
       sitekey = mcaptchaContainer().dataset.sitekey;
+      if (sitekey === null || sitekey === undefined) {
+        throw new Error(`Define sitekey data attribute)`);
+      }
     }
     return sitekey;
   })();
@@ -40,6 +46,10 @@ export const provider = () => {
   return (() => {
     if (url === null || url === undefined) {
       url = new URL(mcaptchaContainer().dataset.provider);
+
+      if (url === null || url === undefined) {
+        throw new Error(`Define url data attribute)`);
+      }
     }
     return url;
   })();
@@ -60,6 +70,7 @@ export const ROUTES = (() => {
         getConfig = `${provider().protocol}//${
           provider().host
         }${getConfigPath}`;
+        console.log(getConfig);
       }
 
       return getConfig;
@@ -73,6 +84,7 @@ export const ROUTES = (() => {
         }${verifyPoWPath}`;
       }
 
+      console.log(verifyPoW);
       return verifyPoW;
     },
   };

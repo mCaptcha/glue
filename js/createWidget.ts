@@ -9,6 +9,7 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 import * as CONST from './const';
+import {solveCaptchaRunner} from './index';
 
 /** add  mcaptcha widget element to DOM */
 export const createWidget = () => {
@@ -20,7 +21,9 @@ export const createWidget = () => {
   CONST.mcaptchaContainer().appendChild(btn);
 
   // TODO set onlcick handler
-  btn.addEventListener('click', () => console.log(''));
+  document
+    .getElementById(CONST.btnId)
+    .addEventListener('click', (e) => solveCaptchaRunner(e));
 };
 
 export default createWidget;
