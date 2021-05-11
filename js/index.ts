@@ -15,7 +15,7 @@ createWidget();
 
 export * from './prove';
 export * from './const';
-export * from './fetchPoW';
+export * from './fetchPoWConfig';
 export * from './sendWork';
 export * from './insertResult';
 export * from './createWidget';

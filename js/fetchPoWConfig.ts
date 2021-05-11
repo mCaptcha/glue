@@ -26,7 +26,7 @@ export type PoWConfig = {
  * fetch proof-of-work configuration
  * @returns {PoWConfig} pow config
  * */
-export const fetchPoW = async () => {
+export const fetchPoWConfig = async () => {
   const payload: GetConfigPayload = {
     key: CONST.sitekey(),
   };
@@ -45,4 +45,4 @@ export const fetchPoW = async () => {
   }
 };
 
-export default fetchPoW;
+export default fetchPoWConfig;

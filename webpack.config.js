@@ -9,7 +9,7 @@ const dist = path.resolve(__dirname, 'dist');
 module.exports = {
   //devtool: 'inline-source-map',
   //mode: 'development',
-  //mode: 'production',
+  mode: 'production',
   entry: './js/index.ts',
   output: {
     path: dist,
@@ -55,12 +55,12 @@ module.exports = {
     ],
   },
   experiments: {
-    executeModule: true,
-    outputModule: true,
+    //  executeModule: true,
+    //  outputModule: true,
     syncWebAssembly: true,
-    topLevelAwait: true,
-    asyncWebAssembly: true,
-    layers: true,
-    lazyCompilation: true,
+    //  topLevelAwait: true,
+    //  asyncWebAssembly: true,
+    //  layers: true,
+    //  lazyCompilation: true,
   },
 };

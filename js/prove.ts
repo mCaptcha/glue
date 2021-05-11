@@ -9,11 +9,8 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-import {gen_pow} from '../pkg/index.js';
-
-import genJsonPayload from './utils/genJsonPayload';
-import * as CONST from './const';
-import {PoWConfig} from './fetchPoW';
+import {gen_pow} from '../pkg/index';
+import {PoWConfig} from './fetchPoWConfig';
 
 export type Work = {
   result: string;
