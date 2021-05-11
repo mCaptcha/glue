@@ -8,7 +8,7 @@
  * this program. If not, see <https://spdx.org/licenses/MIT.html> for
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
-import CONST from '../const';
+import * as CONST from '../const';
 import createWidget from '../createWidget';
 
 import {getBaseHtml} from './setupTests';
@@ -16,11 +16,9 @@ import {getBaseHtml} from './setupTests';
 it('create widget works', () => {
   const body = document.querySelector('body');
   body.appendChild(getBaseHtml());
-  console.log(body.innerHTML);
 
   createWidget();
 
-  console.log(body.innerHTML);
   const widget = <HTMLInputElement>document.getElementById(CONST.btnId);
   expect(widget.id).toBe(CONST.btnId);
   expect(widget.value).toBe(CONST.btnText);

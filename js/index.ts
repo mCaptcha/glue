@@ -8,3 +8,14 @@
  * this program. If not, see <https://spdx.org/licenses/MIT.html> for
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
+
+import createWidget from './createWidget';
+
+createWidget();
+
+export * from './prove';
+export * from './const';
+export * from './fetchPoW';
+export * from './sendWork';
+export * from './insertResult';
+export * from './createWidget';

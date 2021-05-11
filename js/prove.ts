@@ -12,7 +12,7 @@
 import {gen_pow} from '../pkg/index.js';
 
 import genJsonPayload from './utils/genJsonPayload';
-import CONST from './const';
+import * as CONST from './const';
 import {PoWConfig} from './fetchPoW';
 
 export type Work = {

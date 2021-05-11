@@ -10,15 +10,17 @@
  */
 import * as CONST from '../const';
 
-export const sitekey = 'imbatman';
-export const provider = 'https://mcaptcha.org';
+import {getBaseHtml, sitekey, provider} from './setupTests';
 
-/** get base HTML with empty mCaptcha container */
-export const getBaseHtml = () => {
-  const base = document.createElement('div');
-  base.id = CONST.mcaptchaContainerID;
-  base.dataset.sitekey = sitekey;
-  base.dataset.provider = provider;
+it('const works', () => {
+  const body = document.querySelector('body');
+  const container = getBaseHtml();
+  body.appendChild(container);
 
-  return base;
-};
+  expect(CONST.mcaptchaContainer()).toBe(container);
+  expect(CONST.sitekey()).toBe(sitekey);
+  expect(CONST.provider()).toEqual(new URL(provider));
+
+  expect(CONST.ROUTES.getConfig()).toBe(`${provider}/api/v1/pow/config`);
+  expect(CONST.ROUTES.verifyPoW()).toBe(`${provider}/api/v1/pow/verify`);
+});

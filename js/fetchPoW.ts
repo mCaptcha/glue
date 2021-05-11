@@ -10,7 +10,7 @@
  */
 
 import genJsonPayload from './utils/genJsonPayload';
-import CONST from './const';
+import * as CONST from './const';
 
 type GetConfigPayload = {
   key: string;
@@ -22,12 +22,13 @@ export type PoWConfig = {
   salt: string;
 };
 
-
-
-/** fetch proof-of-work configuration */
-const fetchPoW = async () => {
+/** 
+ * fetch proof-of-work configuration
+ * @returns {PoWConfig} pow config
+ * */
+export const fetchPoW = async () => {
   const payload: GetConfigPayload = {
-    key: CONST.sitekey,
+    key: CONST.sitekey(),
   };
 
   const res = await fetch(

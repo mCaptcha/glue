@@ -9,10 +9,13 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-const mcaptchaContainerID = 'mcaptcha';
-const mcaptchaContainer = () => {
+/** mcaptcha container ID */
+export const mcaptchaContainerID = 'mcaptcha';
+
+/** get mCaptcha widget container */
+export const mcaptchaContainer = () => {
   let container: HTMLDivElement;
-  return (function() {
+  return (() => {
     if (container === null || container === undefined) {
       container = <HTMLDivElement>document.getElementById(mcaptchaContainerID);
     }
@@ -20,9 +23,10 @@ const mcaptchaContainer = () => {
   })();
 };
 
-const sitekey = () => {
+/** get sitekey */
+export const sitekey = () => {
   let sitekey;
-  return (function() {
+  return (() => {
     if (sitekey === null || sitekey === undefined) {
       sitekey = mcaptchaContainer().dataset.sitekey;
     }
@@ -30,35 +34,51 @@ const sitekey = () => {
   })();
 };
 
-const provider = () => {
+/** get mCaptcha provider */
+export const provider = () => {
   let url;
-  return (function() {
-    if (sitekey === null || sitekey === undefined) {
+  return (() => {
+    if (url === null || url === undefined) {
       url = new URL(mcaptchaContainer().dataset.provider);
     }
     return url;
   })();
 };
 
-const ROUTES = {
-  getConfig: '/api/v1/pow/config',
-  verifyPoW: '/api/v1/pow/verify',
-};
+/** mCaptcha API routes */
+export const ROUTES = (() => {
+  const getConfigPath = '/api/v1/pow/config';
+  const verifyPoWPath = '/api/v1/pow/verify';
 
-const btnId = 'mcaptcha-pow-btn';
-const btnText = "I'm Human";
+  let getConfig: string;
+  let verifyPoW: string;
 
-const inputId = 'mcaptcha-response';
+  return {
+    /** get URL to fetch PoW configuration */
+    getConfig: () => {
+      if (getConfig === null || getConfig === undefined) {
+        getConfig = `${provider().protocol}//${
+          provider().host
+        }${getConfigPath}`;
+      }
 
-const CONST = {
-  ROUTES,
-  mcaptchaContainer,
-  mcaptchaContainerID,
-  sitekey,
-  provider,
-  btnId,
-  btnText,
-  inputId,
-};
+      return getConfig;
+    },
 
-export default CONST;
+    /** get URL to verify PoW*/
+    verifyPoW: () => {
+      if (verifyPoW === null || verifyPoW === undefined) {
+        verifyPoW = `${provider().protocol}//${
+          provider().host
+        }${verifyPoWPath}`;
+      }
+
+      return verifyPoW;
+    },
+  };
+})();
+
+export const btnId = 'mcaptcha-pow-btn';
+export const btnText = "I'm Human";
+
+export const inputId = 'mcaptcha-response';

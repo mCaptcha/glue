@@ -10,14 +10,14 @@
  */
 
 import genJsonPayload from './utils/genJsonPayload';
-import CONST from './const';
+import * as CONST from './const';
 import {Work} from './prove';
 
 export type Token = {
   token: string;
 };
 
-const sendWork = async (payload: Work) => {
+export const sendWork = async (payload: Work) => {
   const res = await fetch(
     `${CONST.provider.toString()}${CONST.ROUTES.getConfig}`,
     genJsonPayload(payload),

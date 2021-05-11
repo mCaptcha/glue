@@ -8,10 +8,10 @@
  * this program. If not, see <https://spdx.org/licenses/MIT.html> for
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
-import CONST from './const';
+import * as CONST from './const';
 
 /** add  mcaptcha widget element to DOM */
-const createWidget = () => {
+export const createWidget = () => {
   const btn = <HTMLInputElement>document.createElement('input');
   btn.type = 'button';
   btn.id = CONST.btnId;

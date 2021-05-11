@@ -38,5 +38,10 @@
     "jest.config.ts",
     "**/*.test.ts",
     "tmp"
-  ]
+  ],
+
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
+  }
 }
