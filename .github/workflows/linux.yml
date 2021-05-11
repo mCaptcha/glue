@@ -75,31 +75,24 @@ jobs:
           command: test
           args: --all --all-features --no-fail-fast
 
-      - name: generate documentation
+      - name: rust generate documentation
         if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
         uses: actions-rs/cargo@v1
         with:
           command: doc
           args: --no-deps --workspace --all-features
 
-      - name: Deploy Rust Docuemntation to GitHub Pages
-        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: target/doc
-          TARGET-FOLDER: rust/
-
-      - name: generate documentation
+      - name: generate TS documentation
         if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
         run: yarn doc
 
-      - name: Deploy TS Docuemntation to GitHub Pages
+      - name: prepare documentation for deployment
+        run: mkdir ts && mv docs/ ts/ && mkdir docs && mv ts/ docs/ && mv target/doc docs/rust
+
+      - name: Deploy Docuemntation to GitHub Pages
         if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: doc/
-          TARGET-FOLDER: ts/
