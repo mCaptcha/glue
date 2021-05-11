@@ -8,23 +8,13 @@
  * this program. If not, see <https://spdx.org/licenses/MIT.html> for
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
+import CONST from '../const';
 
-import genJsonPayload from './genJsonPayload';
+export const getBaseHtml = () => {
+  const base = document.createElement('div');
+  base.id = CONST.mcaptchaContainerID;
+  base.dataset.sitekey = 'imbatman';
+  base.dataset.provider = 'https://mcaptcha.org';
 
-'use strict';
-
-const payload = {
-  username: 'Jhon',
+  return base;
 };
-
-const value = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(payload),
-};
-
-it('getFromUrl workds', () => {
-  expect(genJsonPayload(payload)).toEqual(value);
-});

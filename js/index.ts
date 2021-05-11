@@ -1,66 +1,10 @@
-import {gen_pow} from '../pkg/index.js';
-
-import genJsonPayload from './utils/genJsonPayload';
-
-type PoWConfig = {
-  string: string;
-  difficulty_factor: number;
-  salt: string;
-};
-
-type GetConfigPayload = {
-  key: string;
-};
-
-type Work = {
-  result: string;
-  nonce: number;
-}
-
-const mcaptchaContainer = document.getElementById('mcaptcha');
-const sitekey = mcaptchaContainer.dataset.sitekey;
-const provider = new URL(mcaptchaContainer.dataset.provider);
-
-const btnId = 'mcaptcha-pow-btn';
-
-/** add  mcaptcha widget element to DOM */
-const createWidget = () => {
-  const btn = document.createElement('input');
-  btn.type = 'button';
-  btn.id = btnId;
-
-  const btnText = document.createTextNode(`I'm Human`);
-  btn.appendChild(btnText);
-
-  mcaptchaContainer.appendChild(btn);
-
-  btn.addEventListener('clicl', () => console.log(''));
-};
-
-/** fetch proof-of-work configuration */
-const fetchPoW = async () => {
-  const payload: GetConfigPayload = {
-    key: sitekey,
-  };
-
-  const res = await fetch(provider.toString(), genJsonPayload(payload));
-  if (res.ok) {
-    alert('success');
-    const config: PoWConfig = await res.json();
-    return config;
-  } else {
-    const err = await res.json();
-    alert(`error: ${err.error}`);
-  }
-};
-
-const prove = async (config: PoWConfig) => {
-  const proofString = gen_pow(
-    config.salt,
-    config.string,
-    config.difficulty_factor,
-  );
-  const proof: Work = JSON.parse(proofString);
-
-  return proof;
-};
+/*
+ * mCaptcha is a PoW based DoS protection software.
+ * This is the frontend web component of the mCaptcha system
+ * Copyright © 2021 Aravinth Manivnanan <realaravinth@batsense.net>.
+ *
+ * Use of this source code is governed by Apache 2.0 or MIT license.
+ * You shoud have received a copy of MIT and Apache 2.0 along with
+ * this program. If not, see <https://spdx.org/licenses/MIT.html> for
+ * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
+ */
