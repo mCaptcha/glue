@@ -52,7 +52,7 @@ jobs:
       - name: run wasm-pack tests on firefox
         run: wasm-pack test --release --headless --chrome
 
-      - name: run wasm-pack tests on firefox
+      - name: run wasm-pack tests on chrome
         run: wasm-pack test --release --headless --chrome
 
       - uses: actions/setup-node@v2
@@ -87,6 +87,7 @@ jobs:
         run: yarn doc
 
       - name: prepare documentation for deployment
+        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
         run: mkdir ts && mv docs/ ts/ && mkdir docs && mv ts/ docs/ && mv target/doc docs/rust
 
       - name: Deploy Docuemntation to GitHub Pages
