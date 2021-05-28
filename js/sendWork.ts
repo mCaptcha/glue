@@ -20,12 +20,13 @@ export type Token = {
 export const sendWork = async (payload: Work) => {
   const res = await fetch(CONST.ROUTES.verifyPoW(), genJsonPayload(payload));
   if (res.ok) {
-    alert('success');
+    console.debug('work verified');
     const token: Token = await res.json();
+    console.debug(`token ${token.token}`);
     return token;
   } else {
     const err = await res.json();
-    alert(`error: ${err.error}`);
+    console.error(`error: ${err.error}`);
   }
 };
 

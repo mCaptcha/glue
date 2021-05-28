@@ -33,12 +33,11 @@ export const fetchPoWConfig = async () => {
 
   const res = await fetch(CONST.ROUTES.getConfig(), genJsonPayload(payload));
   if (res.ok) {
-    alert('success');
     const config: PoWConfig = await res.json();
     return config;
   } else {
     const err = await res.json();
-    alert(`error: ${err.error}`);
+    console.error(`error: ${err.error}`);
   }
 };
 

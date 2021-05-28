@@ -2,15 +2,126 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login | mCaptcha</title>
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta
+      name="description"
+      content="mCaptcha is an AGPL'd, privacy focued, proof-of-work based CAPTCHA System"
+    />
+
+    <meta name="author" content="Aravinth Manivannan" />
+    <meta name="twitter:card" value="summary_large_image" />
+    <meta name="twitter:site" content="@realaravinth" />
+    <meta name="twitter:title" content="Login | mCaptcha" />
+    <meta
+      name="twitter:description"
+      content="mCaptcha is an AGPL'd, privacy focued, proof-of-work based CAPTCHA System"
+    />
+    <meta name="twitter:creator" content="@realaravinth" />
+    <meta name="twitter:image" content="https://mcaptcaha.org/icon-trans.png" />
+
+    <meta property="og:title" content="Login | mCaptcha" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mcaptcaha.org" />
+    <meta property="og:image" content="https://mcaptcaha.org/icon-trans.png" />
+    <meta
+      property="og:description"
+      content="mCaptcha is an AGPL'd, privacy focued, proof-of-work based CAPTCHA System"
+    />
+    <meta
+      property="og:site_name"
+      content="mCaptcha is an AGPL'd, privacy focued, proof-of-work based CAPTCHA System"
+    />
   </head>
-  <body>
-    <div
-      id="mcaptcha"
-      data-sitekey="5OXs3RFTnN2WKoWjMXSwiYFaNIs0ctqc"
-      data-provider="http://localhost:7000"
-    ></div>
+  <body class="layout">
+    <div class="tmp-layout">
+      <main class="auth-main">
+        <div class="auth-inner-container">
+          <form
+            class="sitekey-form"
+            method="POST"
+            action="/api/v1/signin"
+            id="form"
+          >
+            <h1 class="form__title">
+              Dummy Form
+            </h1>
+            <label class="sitekey-form__label" for="username">
+              Favourite Superhero
+              <input
+                class="sitekey-form__input"
+                type="text"
+                name="superhero"
+                id="superhero"
+                required
+              />
+            </label>
+
+            <label class="sitekey-form__label" for="duration">
+              Favourite food
+              <input
+                class="sitekey-form__input"
+                type="text"
+                name="food"
+                id="food"
+                required
+              />
+            </label>
+
+            <div
+              id="mcaptcha"
+              data-sitekey="5OXs3RFTnN2WKoWjMXSwiYFaNIs0ctqc"
+              data-provider="http://localhost:7000"
+            ></div>
+
+            <input type="submit" class="sitekey-form__submit" value="Sign in" />
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <footer role="contentinfo" class="details__container">
+      <p class="details__copyright">&copy; mCaptcha developers</p>
+      <ul class="details">
+        <li class="details__item">
+          <a class="details__link" href="https://mcaptcha.org">Homepage</a>
+        </li>
+        <li class="details__item">
+          <a class="details__link" href="https://mcaptcha.org/about">About</a>
+        </li>
+        <li class="details__item">
+          <a class="details__link" href="https://mcaptcha.org/donate">Donate</a>
+        </li>
+        <li class="details__item">
+          <a class="details__link" href="https://mcaptcha.org/security"
+            >Security</a
+          >
+        </li>
+        <li class="details__item">
+          <a class="details__link" href="https://mcaptcha.org/thanks">Thanks</a>
+        </li>
+        <li class="details__item">
+          <a
+            class="details__link"
+            href="https://github.com/mCaptcha/guard/tree/50234435ecbf5ba5ca8cf86f7a16cef5a22262e1"
+          >
+            v0.1.0-50234435
+          </a>
+        </li>
+      </ul>
+    </footer>
   </body>
   <script src="../dist/bundle.js"></script>
+  <style type="text/css" media="screen">
+    #mcaptcha {
+      padding: 5px;
+      background-color: green;
+    }
+    #mcaptcha-pow-btn {
+      width: 100%;
+      color: red;
+    }
+  </style>
 </html>

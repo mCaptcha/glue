@@ -91,6 +91,8 @@ export const ROUTES = (() => {
 })();
 
 export const btnId = 'mcaptcha-pow-btn';
+export const btnImg = 'mcaptcha-pow-btn__logo';
 export const btnText = "I'm Human";
+export const btnImgSrc = "https://mcaptcha.org/icon-trans.png";
 
 export const inputId = 'mcaptcha-response';

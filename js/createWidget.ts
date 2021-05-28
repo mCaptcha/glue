@@ -13,12 +13,19 @@ import {solveCaptchaRunner} from './index';
 
 /** add  mcaptcha widget element to DOM */
 export const createWidget = () => {
-  const btn = <HTMLInputElement>document.createElement('input');
-  btn.type = 'button';
+  const btn = <HTMLButtonElement>document.createElement('button');
   btn.id = CONST.btnId;
-  btn.value = CONST.btnText;
+  const btnText = document.createTextNode(CONST.btnText);
 
+  const img = <HTMLImageElement>document.createElement('img');
+  img.className = CONST.btnImg;
+  img.src = CONST.btnImgSrc;
+
+  btn.appendChild(img);
+  btn.appendChild(btnText);
   CONST.mcaptchaContainer().appendChild(btn);
+
+  
 
   // TODO set onlcick handler
   document

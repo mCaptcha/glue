@@ -8,8 +8,8 @@
  * this program. If not, see <https://spdx.org/licenses/MIT.html> for
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
-import * as CONST from '../const';
-import createWidget from '../createWidget';
+//import * as CONST from '../const';
+//import createWidget from '../createWidget';
 
 import {getBaseHtml, mockWasm, loadWasm} from './setupTests';
 
@@ -17,7 +17,7 @@ it('create widget works', async () => {
   const body = document.querySelector('body');
   body.appendChild(getBaseHtml());
   //  loadWasm();
-  await mockWasm();
+//  await mockWasm();
 
   // TODO figure out a way to add webassembly
 

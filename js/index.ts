@@ -17,14 +17,14 @@ import insertResult from './insertResult';
 
 createWidget();
 
-export const solveCaptchaRunner = async (_e: Event) => {
+export const solveCaptchaRunner = async (e: Event) => {
+  e.preventDefault();
   // steps:
   // 1. get config
   // 2. prove work
   // 3. submit work
   // 4. insert token
 
-  console.log('running');
   const config = await fetchPoWConfig();
   const proof = await prove(config);
   const token = await sendWork(proof);
