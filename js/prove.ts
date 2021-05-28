@@ -11,8 +11,17 @@
 
 import {gen_pow} from '../pkg/index';
 import {PoWConfig} from './fetchPoWConfig';
+import * as CONST from './const';
 
 export type Work = {
+  result: string;
+  nonce: number;
+  string: string,
+  key: string,
+};
+
+
+type WasmWork = {
   result: string;
   nonce: number;
 };
@@ -28,9 +37,17 @@ const prove = async (config: PoWConfig) => {
     config.string,
     config.difficulty_factor,
   );
-  const proof: Work = JSON.parse(proofString);
+  const proof: WasmWork = JSON.parse(proofString);
 
-  return proof;
+  const res: Work = {
+    key: CONST.sitekey(),
+    string: config.string,
+    nonce: proof.nonce,
+    result: proof.result,
+  }
+
+
+  return res;
 };
 
 export default prove;

@@ -24,7 +24,6 @@ export const solveCaptchaRunner = async (_e: Event) => {
   // 3. submit work
   // 4. insert token
 
-  alert('x');
   console.log('running');
   const config = await fetchPoWConfig();
   const proof = await prove(config);

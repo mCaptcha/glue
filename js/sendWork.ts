@@ -18,7 +18,7 @@ export type Token = {
 };
 
 export const sendWork = async (payload: Work) => {
-  const res = await fetch(CONST.ROUTES.getConfig(), genJsonPayload(payload));
+  const res = await fetch(CONST.ROUTES.verifyPoW(), genJsonPayload(payload));
   if (res.ok) {
     alert('success');
     const token: Token = await res.json();
