@@ -10,17 +10,12 @@
  */
 import * as CONST from '../const';
 
-import {getBaseHtml, sitekey, provider} from './setupTests';
+import {getBaseHtml, sitekey, checkbox} from './setupTests';
 
 it('const works', () => {
   const body = document.querySelector('body');
   const container = getBaseHtml();
   body.appendChild(container);
-
-  expect(CONST.mcaptchaContainer()).toBe(container);
   expect(CONST.sitekey()).toBe(sitekey);
-  expect(CONST.provider()).toEqual(new URL(provider));
-
-  expect(CONST.ROUTES.getConfig()).toBe(`${provider}/api/v1/pow/config`);
-  expect(CONST.ROUTES.verifyPoW()).toBe(`${provider}/api/v1/pow/verify`);
+  expect(CONST.btn()).toBe(checkbox);
 });

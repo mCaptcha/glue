@@ -22,7 +22,8 @@ export const insertResult = (token: Token) => {
   invisibleInput.value = token.token;
   invisibleInput.id = CONST.inputId;
   invisibleInput.name = CONST.inputId;
-  CONST.mcaptchaContainer().appendChild(invisibleInput);
+  // TODO send message to parent container
+  //  CONST.mcaptchaContainer().appendChild(invisibleInput);
 };
 
 export default insertResult;

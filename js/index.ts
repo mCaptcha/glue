@@ -9,13 +9,16 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-import createWidget from './createWidget';
 import prove from './prove';
 import fetchPoWConfig from './fetchPoWConfig';
 import sendWork from './sendWork';
 import insertResult from './insertResult';
+import * as CONST from './const';
 
-createWidget();
+/** add  mcaptcha widget element to DOM */
+export const registerVerificationEventHandler = () => {
+  CONST.btn().addEventListener('click', e => solveCaptchaRunner(e));
+};
 
 export const solveCaptchaRunner = async (e: Event) => {
   e.preventDefault();
@@ -36,4 +39,3 @@ export * from './const';
 export * from './fetchPoWConfig';
 export * from './sendWork';
 export * from './insertResult';
-export * from './createWidget';

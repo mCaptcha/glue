@@ -9,90 +9,49 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-/** mcaptcha container ID */
-export const mcaptchaContainerID = 'mcaptcha';
-
-/** get mCaptcha widget container */
-export const mcaptchaContainer = () => {
-  let container: HTMLDivElement;
-  return (() => {
-    if (container === null || container === undefined) {
-      container = <HTMLDivElement>document.getElementById(mcaptchaContainerID);
-      if (container === null || container === undefined) {
-        throw new Error(`Define div element with id ${mcaptchaContainerID}`);
-      }
-    }
-    return container;
-  })();
-};
+/** mcaptcha checkbox ID **/
+export const btnId = 'widget__verification-checkbox';
 
 /** get sitekey */
 export const sitekey = () => {
   let sitekey;
   return (() => {
     if (sitekey === null || sitekey === undefined) {
-      sitekey = mcaptchaContainer().dataset.sitekey;
+      sitekey = new URL(window.location.href).searchParams.get('sitekey');
       if (sitekey === null || sitekey === undefined) {
-        throw new Error(`Define sitekey data attribute)`);
+        console.error(window.location.href);
+        throw new Error(`Define sitekey in query parameter)`);
       }
     }
     return sitekey;
   })();
 };
 
-/** get mCaptcha provider */
-export const provider = () => {
-  let url;
-  return (() => {
-    if (url === null || url === undefined) {
-      url = new URL(mcaptchaContainer().dataset.provider);
-
-      if (url === null || url === undefined) {
-        throw new Error(`Define url data attribute)`);
-      }
-    }
-    return url;
-  })();
-};
-
 /** mCaptcha API routes */
 export const ROUTES = (() => {
-  const getConfigPath = '/api/v1/pow/config';
-  const verifyPoWPath = '/api/v1/pow/verify';
-
-  let getConfig: string;
-  let verifyPoW: string;
+  const getConfig = '/api/v1/pow/config';
+  const verififyPoW = '/api/v1/pow/verify';
 
   return {
     /** get URL to fetch PoW configuration */
-    getConfig: () => {
-      if (getConfig === null || getConfig === undefined) {
-        getConfig = `${provider().protocol}//${
-          provider().host
-        }${getConfigPath}`;
-        console.log(getConfig);
-      }
-
-      return getConfig;
-    },
-
+    getConfig,
     /** get URL to verify PoW*/
-    verifyPoW: () => {
-      if (verifyPoW === null || verifyPoW === undefined) {
-        verifyPoW = `${provider().protocol}//${
-          provider().host
-        }${verifyPoWPath}`;
-      }
-
-      console.log(verifyPoW);
-      return verifyPoW;
-    },
+    verififyPoW,
   };
 })();
 
-export const btnId = 'mcaptcha-pow-btn';
-export const btnImg = 'mcaptcha-pow-btn__logo';
-export const btnText = "I'm Human";
-export const btnImgSrc = "https://mcaptcha.org/icon-trans.png";
+/** get mCaptcha verifify checkbox button */
+export const btn = () => {
+  let btn;
+  return (() => {
+    if (btn === null || btn === undefined) {
+      btn = document.getElementById(btnId);
+      if (btn === null || btn === undefined) {
+        throw new Error(`mCaptcha button not found)`);
+      }
+    }
+    return btn;
+  })();
+};
 
 export const inputId = 'mcaptcha-response';

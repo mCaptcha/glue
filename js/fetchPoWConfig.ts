@@ -31,7 +31,7 @@ export const fetchPoWConfig = async () => {
     key: CONST.sitekey(),
   };
 
-  const res = await fetch(CONST.ROUTES.getConfig(), genJsonPayload(payload));
+  const res = await fetch(CONST.ROUTES.getConfig, genJsonPayload(payload));
   if (res.ok) {
     const config: PoWConfig = await res.json();
     return config;
