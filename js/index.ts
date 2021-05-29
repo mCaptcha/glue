@@ -17,10 +17,17 @@ import * as CONST from './const';
 
 /** add  mcaptcha widget element to DOM */
 export const registerVerificationEventHandler = () => {
+  const verificationContainer = <HTMLElement>(
+    document.querySelector('.widget__verification-container')
+  );
+  verificationContainer.style.display = 'flex';
   CONST.btn().addEventListener('click', e => solveCaptchaRunner(e));
 };
 
 export const solveCaptchaRunner = async (e: Event) => {
+  if (CONST.btn().checked == true) {
+    return;
+  }
   e.preventDefault();
   // steps:
 
@@ -39,9 +46,7 @@ export const solveCaptchaRunner = async (e: Event) => {
   sendToParent(token);
   // 5. mark checkbox checked
   CONST.btn().checked = true;
+  CONST.messageText().during().style.display = 'none';
 };
 
-export * from './prove';
-export * from './const';
-export * from './fetchPoWConfig';
-export * from './sendWork';
+registerVerificationEventHandler();
