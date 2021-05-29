@@ -2,126 +2,123 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Login | mCaptcha</title>
-    <meta name="referrer" content="no-referrer-when-downgrade" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <meta
-      name="description"
-      content="mCaptcha is an AGPL'd, privacy focued, proof-of-work based CAPTCHA System"
-    />
-
-    <meta name="author" content="Aravinth Manivannan" />
-    <meta name="twitter:card" value="summary_large_image" />
-    <meta name="twitter:site" content="@realaravinth" />
-    <meta name="twitter:title" content="Login | mCaptcha" />
-    <meta
-      name="twitter:description"
-      content="mCaptcha is an AGPL'd, privacy focued, proof-of-work based CAPTCHA System"
-    />
-    <meta name="twitter:creator" content="@realaravinth" />
-    <meta name="twitter:image" content="https://mcaptcaha.org/icon-trans.png" />
-
-    <meta property="og:title" content="Login | mCaptcha" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://mcaptcaha.org" />
-    <meta property="og:image" content="https://mcaptcaha.org/icon-trans.png" />
-    <meta
-      property="og:description"
-      content="mCaptcha is an AGPL'd, privacy focued, proof-of-work based CAPTCHA System"
-    />
-    <meta
-      property="og:site_name"
-      content="mCaptcha is an AGPL'd, privacy focued, proof-of-work based CAPTCHA System"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mCaptcha</title>
   </head>
-  <body class="layout">
-    <div class="tmp-layout">
-      <main class="auth-main">
-        <div class="auth-inner-container">
-          <form
-            class="sitekey-form"
-            method="POST"
-            action="/api/v1/signin"
-            id="form"
-          >
-            <h1 class="form__title">
-              Dummy Form
-            </h1>
-            <label class="sitekey-form__label" for="username">
-              Favourite Superhero
-              <input
-                class="sitekey-form__input"
-                type="text"
-                name="superhero"
-                id="superhero"
-                required
-              />
-            </label>
-
-            <label class="sitekey-form__label" for="duration">
-              Favourite food
-              <input
-                class="sitekey-form__input"
-                type="text"
-                name="food"
-                id="food"
-                required
-              />
-            </label>
-
-            <div
-              id="mcaptcha"
-              data-sitekey="5OXs3RFTnN2WKoWjMXSwiYFaNIs0ctqc"
-              data-provider="http://localhost:7000"
-            ></div>
-
-            <input type="submit" class="sitekey-form__submit" value="Sign in" />
-          </form>
-        </div>
-      </main>
-    </div>
-
-    <footer role="contentinfo" class="details__container">
-      <p class="details__copyright">&copy; mCaptcha developers</p>
-      <ul class="details">
-        <li class="details__item">
-          <a class="details__link" href="https://mcaptcha.org">Homepage</a>
-        </li>
-        <li class="details__item">
-          <a class="details__link" href="https://mcaptcha.org/about">About</a>
-        </li>
-        <li class="details__item">
-          <a class="details__link" href="https://mcaptcha.org/donate">Donate</a>
-        </li>
-        <li class="details__item">
-          <a class="details__link" href="https://mcaptcha.org/security"
-            >Security</a
-          >
-        </li>
-        <li class="details__item">
-          <a class="details__link" href="https://mcaptcha.org/thanks">Thanks</a>
-        </li>
-        <li class="details__item">
-          <a
-            class="details__link"
-            href="https://github.com/mCaptcha/guard/tree/50234435ecbf5ba5ca8cf86f7a16cef5a22262e1"
-          >
-            v0.1.0-50234435
+  <body>
+    <form class="contaienr">
+      <noscript class="noscript-container">
+        <span class="warning">
+          Please enable JavaScript to receive mCaptcha challenge
+        </span>
+        <a class="source-code" href="https://github.com/mCaptcha">
+          Read our source code
+        </a>
+      </noscript>
+      <label class="checkbox-label" for="verification">
+        <input id="verification" class="checkbox" type="checkbox" />
+        I'm not a robot
+      </label>
+      <div class="details">
+        <a href="https://mcaptcha.org" class="logo-container">
+          <img
+            class="logo"
+            src="https://mcaptcha.org/icon-trans.png"
+            alt="mCaptcha logo"
+          />
+          <p class="brand-name">mCaptcha</p>
+        </a>
+        <div class="links-container">
+          <a class="links" href="https://mcaptcha.org/privacy-policy">
+            Privacy
           </a>
-        </li>
-      </ul>
-    </footer>
+          <a class="links" href="https://mcaptcha.org/terms">
+            Terms
+          </a>
+        </div>
+      </div>
+    </form>
   </body>
-  <script src="../dist/bundle.js"></script>
   <style type="text/css" media="screen">
-    #mcaptcha {
-      padding: 5px;
-      background-color: green;
+    .contaienr {
+      max-width: 350px;
+      max-height: 90px;
+      display: flex;
+      box-sizing: border-box;
     }
-    #mcaptcha-pow-btn {
+
+    .noscript-container {
+      display: flex;
+      font-size: 0.7rem;
+      line-height: 20px;
+      flex-direction: column;
+      padding: 5px;
+    }
+
+    .warning {
+      display: block;
+      margin: auto;
+      flex: 2;
       width: 100%;
-      color: red;
+      margin: auto;
+    }
+
+    .source-code {
+      display: block;
+      flex: 1;
+    }
+
+    .checkbox-label {
+      display: none;
+      /*display: flex; */
+      align-items: center;
+      line-height: 30px;
+      flex: 2;
+      margin: auto;
+      font-size: 0.99rem;
+    }
+
+    .checkbox {
+      width: 30px;
+      height: 30px;
+      margin: 0 10px;
+    }
+
+    .details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    .logo-container {
+      flex: 2;
+      padding-top: 5px;
+    }
+
+    .brand-name {
+      font-size: 0.6rem;
+      margin: auto;
+      text-align: center;
+    }
+
+    .logo {
+      display: block;
+      width: 45px;
+      margin: auto;
+    }
+
+    .links-container {
+      display: flex;
+      margin: auto;
+    }
+
+    .links {
+      font-size: 0.5rem;
+      margin: 5px;
     }
   </style>
+  <script>
+    document.querySelector(".checkbox-label").style.display = "flex";
+  </script>
 </html>
