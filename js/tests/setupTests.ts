@@ -16,10 +16,25 @@ export const checkbox = <HTMLInputElement>document.createElement('input');
 checkbox.type = 'checkbox';
 checkbox.id = CONST.btnId;
 
+const getMessages = (state: string) => {
+  const msg = <HTMLElement>document.createElement('span');
+  msg.className = `widget__verification-text--${state}`;
+  return msg;
+};
+
+export const beforeMsg = getMessages('before');
+export const afterMsg = getMessages('after');
+export const duringMsg = getMessages('during');
+export const errorMsg = getMessages('error');
+
 /** get base HTML with empty mCaptcha container */
 export const getBaseHtml = () => {
   const form = <HTMLFormElement>document.createElement('form');
   form.appendChild(checkbox);
+  form.appendChild(beforeMsg);
+  form.appendChild(duringMsg);
+  form.appendChild(afterMsg);
+  form.appendChild(errorMsg);
 
   return form;
 };

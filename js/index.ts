@@ -12,7 +12,7 @@
 import prove from './prove';
 import fetchPoWConfig from './fetchPoWConfig';
 import sendWork from './sendWork';
-import insertResult from './insertResult';
+import sendToParent from './sendToParent';
 import * as CONST from './const';
 
 /** add  mcaptcha widget element to DOM */
@@ -23,19 +23,25 @@ export const registerVerificationEventHandler = () => {
 export const solveCaptchaRunner = async (e: Event) => {
   e.preventDefault();
   // steps:
-  // 1. get config
-  // 2. prove work
-  // 3. submit work
-  // 4. insert token
 
+  // 1. hide --before message
+  CONST.messageText().before().style.display = 'none';
+
+  // 1. show --during
+  CONST.messageText().during().style.display = 'block';
+  // 1. get config
   const config = await fetchPoWConfig();
+  // 2. prove work
   const proof = await prove(config);
+  // 3. submit work
   const token = await sendWork(proof);
-  insertResult(token);
+  // 4. send token
+  sendToParent(token);
+  // 5. mark checkbox checked
+  CONST.btn().checked = true;
 };
 
 export * from './prove';
 export * from './const';
 export * from './fetchPoWConfig';
 export * from './sendWork';
-export * from './insertResult';

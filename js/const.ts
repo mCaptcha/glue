@@ -45,13 +45,67 @@ export const btn = () => {
   let btn;
   return (() => {
     if (btn === null || btn === undefined) {
-      btn = document.getElementById(btnId);
+      btn = <HTMLInputElement>document.getElementById(btnId);
       if (btn === null || btn === undefined) {
         throw new Error(`mCaptcha button not found)`);
       }
     }
     return btn;
   })();
+};
+
+export const messageText = () => {
+  let beforeClass = 'widget__verification-text--before';
+  let duringClass = 'widget__verification-text--during';
+  let errorClass = 'widget__verification-text--error';
+  let afterClass = 'widget__verification-text--after';
+
+  let before: HTMLElement;
+  let after: HTMLElement;
+  let during: HTMLElement;
+  let error: HTMLElement;
+
+  return {
+    before: () => {
+      if (before === null || before === undefined) {
+        before = <HTMLElement>document.querySelector(`.${beforeClass}`);
+        if (before === null || before === undefined) {
+          throw new Error(`before element not found)`);
+        }
+      }
+      return before;
+    },
+
+    after: () => {
+      if (after === null || after === undefined) {
+        after = <HTMLSpanElement>document.querySelector(`.${afterClass}`);
+        if (after === null || after === undefined) {
+          throw new Error(`after element not found)`);
+        }
+      }
+      return after;
+    },
+
+    during: () => {
+      if (during === null || during === undefined) {
+        during = <HTMLSpanElement>document.querySelector(`.${duringClass}`);
+        if (during === null || during === undefined) {
+          throw new Error(`before during not found)`);
+        }
+      }
+      return during;
+    },
+
+    error: () => {
+      if (error === null || error === undefined) {
+        error = <HTMLSpanElement>document.querySelector(`.${errorClass}`);
+        if (error === null || error === undefined) {
+          throw new Error(`before error not found)`);
+        }
+      }
+      return error;
+    },
+  };
 };
 
 export const inputId = 'mcaptcha-response';

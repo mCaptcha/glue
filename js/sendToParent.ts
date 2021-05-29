@@ -8,22 +8,17 @@
  * this program. If not, see <https://spdx.org/licenses/MIT.html> for
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
-import * as CONST from './const';
 import {Token} from './sendWork';
 
 /**
- * add token to form
+ * send pow validation token as message to parant of the iframe
  * @param {Token} token: token received from mCaptcha service
  * upon successful PoW validation
  * */
-export const insertResult = (token: Token) => {
-  const invisibleInput = <HTMLInputElement>document.createElement('input');
-  invisibleInput.hidden = true;
-  invisibleInput.value = token.token;
-  invisibleInput.id = CONST.inputId;
-  invisibleInput.name = CONST.inputId;
-  // TODO send message to parent container
-  //  CONST.mcaptchaContainer().appendChild(invisibleInput);
+export const sendToParent = (token: Token) => {
+  window.parent.postMessage(token, '*');
+  // TODO set origin. Make parent send origin as query parameter
+  // or as a message to iframe
 };
 
-export default insertResult;
+export default sendToParent;

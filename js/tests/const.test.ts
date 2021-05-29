@@ -11,6 +11,7 @@
 import * as CONST from '../const';
 
 import {getBaseHtml, sitekey, checkbox} from './setupTests';
+import * as TESTElements from './setupTests';
 
 it('const works', () => {
   const body = document.querySelector('body');
@@ -18,4 +19,9 @@ it('const works', () => {
   body.appendChild(container);
   expect(CONST.sitekey()).toBe(sitekey);
   expect(CONST.btn()).toBe(checkbox);
+
+  expect(CONST.messageText().after()).toBe(TESTElements.afterMsg);
+  expect(CONST.messageText().before()).toBe(TESTElements.beforeMsg);
+  expect(CONST.messageText().during()).toBe(TESTElements.duringMsg);
+  expect(CONST.messageText().error()).toBe(TESTElements.errorMsg);
 });
