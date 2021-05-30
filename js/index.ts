@@ -24,18 +24,25 @@ export const registerVerificationEventHandler = () => {
   CONST.btn().addEventListener('click', e => solveCaptchaRunner(e));
 };
 
+const showMsg = (e: HTMLElement) => (e.style.display = 'block');
+const hideMsg = (e: HTMLElement) => (e.style.display = 'none');
+
 export const solveCaptchaRunner = async (e: Event) => {
-  if (CONST.btn().checked == true) {
+  if (CONST.btn().checked == false) {
+    showMsg(CONST.messageText().before());
+    hideMsg(CONST.messageText().after());
+    hideMsg(CONST.messageText().during());
+    hideMsg(CONST.messageText().error());
     return;
   }
   e.preventDefault();
   // steps:
 
   // 1. hide --before message
-  CONST.messageText().before().style.display = 'none';
+  hideMsg(CONST.messageText().before());
 
   // 1. show --during
-  CONST.messageText().during().style.display = 'block';
+  showMsg(CONST.messageText().during());
   // 1. get config
   const config = await fetchPoWConfig();
   // 2. prove work
@@ -46,7 +53,8 @@ export const solveCaptchaRunner = async (e: Event) => {
   sendToParent(token);
   // 5. mark checkbox checked
   CONST.btn().checked = true;
-  CONST.messageText().during().style.display = 'none';
+  hideMsg(CONST.messageText().during());
+  showMsg(CONST.messageText().after());
 };
 
 registerVerificationEventHandler();
