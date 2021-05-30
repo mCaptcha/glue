@@ -36,6 +36,7 @@ export const solveCaptchaRunner = async (e: Event) => {
     LOCK = true;
     if (CONST.btn().checked == false) {
       CONST.messageText().before();
+      LOCK = false;
       return;
     }
     e.preventDefault();
