@@ -16,10 +16,9 @@ import * as CONST from './const';
 export type Work = {
   result: string;
   nonce: number;
-  string: string,
-  key: string,
+  string: string;
+  key: string;
 };
-
 
 type WasmWork = {
   result: string;
@@ -32,22 +31,25 @@ type WasmWork = {
  * work needs to be computed
  * */
 const prove = async (config: PoWConfig) => {
-  const proofString = gen_pow(
-    config.salt,
-    config.string,
-    config.difficulty_factor,
-  );
-  const proof: WasmWork = JSON.parse(proofString);
+  try {
+    const proofString = gen_pow(
+      config.salt,
+      config.string,
+      config.difficulty_factor,
+    );
+    const proof: WasmWork = JSON.parse(proofString);
 
-  const res: Work = {
-    key: CONST.sitekey(),
-    string: config.string,
-    nonce: proof.nonce,
-    result: proof.result,
+    const res: Work = {
+      key: CONST.sitekey(),
+      string: config.string,
+      nonce: proof.nonce,
+      result: proof.result,
+    };
+
+    return res;
+  } catch (err) {
+    throw err;
   }
-
-
-  return res;
 };
 
 export default prove;

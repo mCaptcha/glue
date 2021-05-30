@@ -19,8 +19,7 @@ export const sitekey = () => {
     if (sitekey === null || sitekey === undefined) {
       sitekey = new URL(window.location.href).searchParams.get('sitekey');
       if (sitekey === null || sitekey === undefined) {
-        console.error(window.location.href);
-        throw new Error(`Define sitekey in query parameter)`);
+        throw new Error(`Define sitekey in query parameter`);
       }
     }
     return sitekey;
@@ -65,45 +64,87 @@ export const messageText = () => {
   let during: HTMLElement;
   let error: HTMLElement;
 
-  return {
-    before: () => {
+  /** runner fn to display HTMLElement **/
+  const showMsg = (e: HTMLElement) => (e.style.display = 'block');
+  /** runner fn to hide HTMLElement **/
+  const hideMsg = (e: HTMLElement) => (e.style.display = 'none');
+
+  /** lazy init and get before elementt **/
+  const getBefore = () => {
+    if (before === null || before === undefined) {
+      before = <HTMLElement>document.querySelector(`.${beforeClass}`);
       if (before === null || before === undefined) {
-        before = <HTMLElement>document.querySelector(`.${beforeClass}`);
-        if (before === null || before === undefined) {
-          throw new Error(`before element not found)`);
-        }
+        throw new Error(`before element not found)`);
       }
       return before;
-    },
+    }
+  };
 
-    after: () => {
+  /** lazy init and get after elementt **/
+  const getAfter = () => {
+    if (after === null || after === undefined) {
+      after = <HTMLSpanElement>document.querySelector(`.${afterClass}`);
       if (after === null || after === undefined) {
-        after = <HTMLSpanElement>document.querySelector(`.${afterClass}`);
-        if (after === null || after === undefined) {
-          throw new Error(`after element not found)`);
-        }
+        throw new Error(`after element not found)`);
       }
-      return after;
-    },
+    }
 
-    during: () => {
-      if (during === null || during === undefined) {
-        during = <HTMLSpanElement>document.querySelector(`.${duringClass}`);
-        if (during === null || during === undefined) {
-          throw new Error(`before during not found)`);
-        }
-      }
-      return during;
-    },
+    return after;
+  };
 
-    error: () => {
+  /** lazy init and get error elementt **/
+  const getError = () => {
+    if (error === null || error === undefined) {
+      error = <HTMLSpanElement>document.querySelector(`.${errorClass}`);
       if (error === null || error === undefined) {
-        error = <HTMLSpanElement>document.querySelector(`.${errorClass}`);
-        if (error === null || error === undefined) {
-          throw new Error(`before error not found)`);
-        }
+        throw new Error(`before error not found)`);
       }
-      return error;
+    }
+    return error;
+  };
+
+  /** lazy init and get during elementt **/
+  const getDuring = () => {
+    if (during === null || during === undefined) {
+      during = <HTMLSpanElement>document.querySelector(`.${duringClass}`);
+      if (during === null || during === undefined) {
+        throw new Error(`before during not found)`);
+      }
+    }
+
+    return during;
+  };
+  return {
+    /** display "before" message **/
+    before: () => {
+      showMsg(getBefore());
+      hideMsg(getAfter());
+      hideMsg(getDuring());
+      hideMsg(getError());
+    },
+
+    /** display "after" message **/
+    after: () => {
+      hideMsg(getBefore());
+      showMsg(getAfter());
+      hideMsg(getDuring());
+      hideMsg(getError());
+    },
+
+    /** display "during" message **/
+    during: () => {
+      hideMsg(getBefore());
+      hideMsg(getAfter());
+      showMsg(getDuring());
+      hideMsg(getError());
+    },
+
+    /** display "error" message **/
+    error: () => {
+      hideMsg(getBefore());
+      hideMsg(getAfter());
+      hideMsg(getDuring());
+      showMsg(getError());
     },
   };
 };

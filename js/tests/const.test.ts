@@ -20,8 +20,31 @@ it('const works', () => {
   expect(CONST.sitekey()).toBe(sitekey);
   expect(CONST.btn()).toBe(checkbox);
 
-  expect(CONST.messageText().after()).toBe(TESTElements.afterMsg);
-  expect(CONST.messageText().before()).toBe(TESTElements.beforeMsg);
-  expect(CONST.messageText().during()).toBe(TESTElements.duringMsg);
-  expect(CONST.messageText().error()).toBe(TESTElements.errorMsg);
+  // display after
+  CONST.messageText().after();
+  expect(TESTElements.afterMsg.style.display).toBe('block');
+  expect(TESTElements.beforeMsg.style.display).toBe('none');
+  expect(TESTElements.duringMsg.style.display).toBe('none');
+  expect(TESTElements.errorMsg.style.display).toBe('none');
+
+  // display before
+  CONST.messageText().before();
+  expect(TESTElements.afterMsg.style.display).toBe('none');
+  expect(TESTElements.beforeMsg.style.display).toBe('block');
+  expect(TESTElements.duringMsg.style.display).toBe('none');
+  expect(TESTElements.errorMsg.style.display).toBe('none');
+
+  // display during
+  CONST.messageText().during();
+  expect(TESTElements.afterMsg.style.display).toBe('none');
+  expect(TESTElements.beforeMsg.style.display).toBe('none');
+  expect(TESTElements.duringMsg.style.display).toBe('block');
+  expect(TESTElements.errorMsg.style.display).toBe('none');
+
+  // display error
+  CONST.messageText().error();
+  expect(TESTElements.afterMsg.style.display).toBe('none');
+  expect(TESTElements.beforeMsg.style.display).toBe('none');
+  expect(TESTElements.duringMsg.style.display).toBe('none');
+  expect(TESTElements.errorMsg.style.display).toBe('block');
 });

@@ -27,17 +27,21 @@ export type PoWConfig = {
  * @returns {PoWConfig} pow config
  * */
 export const fetchPoWConfig = async () => {
-  const payload: GetConfigPayload = {
-    key: CONST.sitekey(),
-  };
+  try {
+    const payload: GetConfigPayload = {
+      key: CONST.sitekey(),
+    };
 
-  const res = await fetch(CONST.ROUTES.getConfig, genJsonPayload(payload));
-  if (res.ok) {
-    const config: PoWConfig = await res.json();
-    return config;
-  } else {
-    const err = await res.json();
-    console.error(`error: ${err.error}`);
+    const res = await fetch(CONST.ROUTES.getConfig, genJsonPayload(payload));
+    if (res.ok) {
+      const config: PoWConfig = await res.json();
+      return config;
+    } else {
+      const err = await res.json();
+      throw new Error(err);
+    }
+  } catch (err) {
+    throw err;
   }
 };
 
