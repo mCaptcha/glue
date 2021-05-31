@@ -31,6 +31,10 @@ export const sendWork = async (payload: Work) => {
       throw new Error(err);
     }
   } catch (err) {
+    CONST.messageText().error();
+    console.error(err);
+    await new Promise(r => setTimeout(r, 1000));
+    window.location.reload();
     throw err;
   }
 };
