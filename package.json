@@ -18,8 +18,8 @@
   },
   "version": "0.1.0",
   "scripts": {
-    "build": "rimraf dist pkg && webpack --mode production",
-    "start": "rimraf dist pkg && webpack-dev-server --open -d",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open -d",
     "test": "yarn build && yarn jest",
     "doc": "yarn build && yarn typedoc js/index.ts"
   },

@@ -9,22 +9,21 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-import genJsonPayload from './genJsonPayload';
+import Widget from './widget';
 
-'use strict';
+const WIDGET = new Widget();
 
-const payload = {
-  username: 'Jhon',
+export const handle = (e: MessageEvent) => {
+  if (e.origin !== WIDGET.getHost()) {
+    console.error(
+      `expected message from ${WIDGET.getHost()} but received message from ${
+        e.origin
+      }. Aborting.`,
+    );
+    return;
+  }
+  const token = e.data.token;
+  WIDGET.setToken(token);
 };
 
-const value = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(payload),
-};
-
-it('getFromUrl workds', () => {
-  expect(genJsonPayload(payload)).toEqual(value);
-});
+window.addEventListener('message', e => handle(e));

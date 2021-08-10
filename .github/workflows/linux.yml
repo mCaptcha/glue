@@ -9,14 +9,7 @@ on:
 
 jobs:
   build_and_test:
-    strategy:
-      fail-fast: false
-      matrix:
-        version:
-          - 1.51.0
-          - nightly
-
-    name: ${{ matrix.version }} - x86_64-unknown-linux-gnu
+    name: x86_64-unknown-linux-gnu
     runs-on: ubuntu-latest
 
     steps:
@@ -25,35 +18,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
-          #      - name: Install webdrivers
-          #        run: sude apt-get -r install firefox-geckodriver  google-chrome-stable
-
-      - name: Install ${{ matrix.version }}
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: ${{ matrix.version }}-x86_64-unknown-linux-gnu
-          profile: minimal
-          override: true
-
-      - name: check build
-        uses: actions-rs/cargo@v1
-        with:
-          command: check
-          args: --all --bins --examples --tests
-
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
-      - name: run wasm-pack tests on firefox
-        run: wasm-pack test --release --headless --chrome
-
-      - name: run wasm-pack tests on chrome
-        run: wasm-pack test --release --headless --chrome
+            node_modules
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/yarn.lock') }}
 
       - uses: actions/setup-node@v2
         if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
@@ -61,37 +27,20 @@ jobs:
           node-version: '14.x'
 
       - name: Install JavaScript Dependencies
-        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
         run: yarn install
 
-      - name: Build Frontend
-        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
+      - name: Build
         run: yarn build
 
-      - name: tests
-        uses: actions-rs/cargo@v1
-        timeout-minutes: 40
-        with:
-          command: test
-          args: --all --all-features --no-fail-fast
-
-      - name: rust generate documentation
-        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
-        uses: actions-rs/cargo@v1
-        with:
-          command: doc
-          args: --no-deps --workspace --all-features
+      - name: Test
+        run: yarn test
 
       - name: generate TS documentation
-        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
+        if: github.repository == 'mCaptcha/browser'
         run: yarn doc
 
-      - name: prepare documentation for deployment
-        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
-        run: mkdir ts && mv docs/ ts/ && mkdir docs && mv ts/ docs/ && mv target/doc docs/rust
-
       - name: Deploy Docuemntation to GitHub Pages
-        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
+        if: github.repository == 'mCaptcha/browser'
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
