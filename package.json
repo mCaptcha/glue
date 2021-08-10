@@ -21,7 +21,7 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open -d",
     "test": "yarn build && yarn jest",
-    "doc": "yarn build && yarn typedoc js/index.ts"
+    "doc": "yarn build && yarn typedoc src/index.ts"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
