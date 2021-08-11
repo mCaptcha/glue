@@ -8,4 +8,30 @@
 ![Build)](<https://github.com/mCaptcha/browser/workflows/CI%20(Linux)/badge.svg>)
 [![codecov](https://codecov.io/gh/mCaptcha/browser/branch/master/graph/badge.svg)](https://codecov.io/gh/mCaptcha/browser)
 
+## Usage
+
+Add this snippet to the form which requires to be protected using
+mCaptcha
+
+```html
+<div style="width: 304px; height: 78px;">
+  <iframe
+    title="mCaptcha"
+    src="<LINK TO WIDGET>"
+    role="presentation"
+    name="mcaptcha-widget__iframe"
+    id="mcaptcha-widget__iframe"
+    scrolling="no"
+    sandbox="allow-same-origin allow-scripts"
+    width="304"
+    height="78"
+    data-mcaptcha_host="<mCaptcha HOST LOCATION>"
+    frameborder="0"
+  ></iframe>
 </div>
+<script src="./dist/bundle.js"></script>
+```
+
+## Example
+
+See example form in [./static/embeded.html](./static/embeded.html)
