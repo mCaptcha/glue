@@ -13,23 +13,29 @@ export const INPUT_NAME = 'mcaptcha__token';
 export const ID = 'mcaptcha-widget__iframe';
 
 class Widget {
-  element: HTMLElement | null = null;
+  iframeElement: HTMLIFrameElement | null = null;
   parentElement: HTMLElement | null = null;
   hostUrl: string | null = null;
   inputElement: HTMLInputElement | null = null;
 
+  /*
+   * Get iframe that contains mCaptcha widget
+   */
   get() {
-    if (this.element === null || this.element === undefined) {
-      const element = document.getElementById(ID);
-      if (element === null || element === undefined) {
+    if (this.iframeElement === null || this.iframeElement === undefined) {
+      const iframeElement = <HTMLIFrameElement>document.getElementById(ID);
+      if (iframeElement === null || iframeElement === undefined) {
         throw new Error(`Element ${ID} is undefined`);
       } else {
-        this.element = element;
+        this.iframeElement = iframeElement;
       }
     }
-    return this.element;
+    return this.iframeElement;
   }
 
+  /*
+   * Get parent of the iframe that contains mCaptcha widget
+   */
   getParent() {
     if (this.parentElement === null || this.parentElement === undefined) {
       this.parentElement = <HTMLElement>this.get().parentElement;
@@ -37,13 +43,21 @@ class Widget {
     return this.parentElement;
   }
 
+  /*
+   * Get host on which the mCaptcha service is located
+   */
   getHost() {
     if (this.hostUrl === null || this.hostUrl === undefined) {
-      this.hostUrl = <string>this.get().dataset.mcaptcha_host;
+      const hostUrl = <string>this.get().src;
+      const url = new URL(hostUrl);
+      this.hostUrl = url.host;
     }
     return this.hostUrl;
   }
 
+  /*
+   * Set token value to a hidden input field in the form
+   */
   setToken(val: string) {
     if (this.inputElement === null || this.inputElement === undefined) {
       this.inputElement = document.createElement('input');

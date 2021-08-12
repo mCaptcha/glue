@@ -2,6 +2,7 @@
   "author": "Aravinth Manivannan <realaravinth@batsense.net>",
   "name": "mcaptcha-glue",
   "description": "glue code to setup mCaptcha on your website",
+  "version": "0.1.0-alpha-2",
   "license": "(MIT OR Apache-2.0)",
   "keywords": ["mCaptcha", "CAPTCHA", "proof of work"],
   "homepage": "https://mcaptcha.org",
@@ -36,7 +37,6 @@
     "type": "git",
     "url": "https://github.com/mCaptcha/glue.git"
   },
-  "version": "0.1.0-alpha-1",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open -d",

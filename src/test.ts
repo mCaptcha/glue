@@ -15,10 +15,19 @@ import * as wLib from './widget';
 
 'use strict';
 
-it('LazyElement works', () => {
+it('Widget works', () => {
+  const w = new Widget();
+
+  try {
+    w.get();
+  } catch (e) {
+    expect(e.message).toContain('is undefined');
+  }
+
   const IFRAME = document.createElement('iframe');
+  const IFRAM_SOURCE = 'https://demo.mcaptcha.org/widget/?sitekey=idontexist';
   IFRAME.id = 'mcaptcha-widget__iframe';
-  IFRAME.dataset.mcaptcha_host = 'localhost';
+  IFRAME.src = IFRAM_SOURCE;
 
   const container = document.createElement('div');
   container.appendChild(IFRAME);
@@ -27,11 +36,10 @@ it('LazyElement works', () => {
   FORM.appendChild(container);
   document.body.appendChild(FORM);
 
-  const w = new Widget();
   expect(w.get()).toBe(IFRAME);
   expect(w.getParent()).toBe(container);
   expect(w.getParent()).toBe(container);
-  expect(w.getHost()).toContain('localhost');
+  expect(w.getHost()).toContain('demo.mcaptcha.org');
 
   const token = 'token';
   w.setToken(token);

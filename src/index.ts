@@ -17,7 +17,7 @@ const WIDGET = new Widget();
  * Handle messages sent from mCaptcha widget iframe
  */
 export const handle = (e: MessageEvent) => {
-  if (e.origin !== WIDGET.getHost()) {
+  if (new URL(e.origin).host !== WIDGET.getHost()) {
     console.error(
       `expected message from ${WIDGET.getHost()} but received message from ${
         e.origin
@@ -32,6 +32,4 @@ export const handle = (e: MessageEvent) => {
 /*
  * Register mCaptcha widget
  */
-const init = () => window.addEventListener('message', e => handle(e));
-
-export default init;
+window.addEventListener('message', e => handle(e));
