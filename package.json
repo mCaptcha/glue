@@ -1,6 +1,6 @@
 {
   "author": "Aravinth Manivannan <realaravinth@batsense.net>",
-  "name": "mcaptcha-browser",
+  "name": "mcaptcha-client",
   "license": "(MIT OR Apache-2.0)",
   "keywords": [
     "mCaptcha",

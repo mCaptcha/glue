@@ -13,6 +13,9 @@ import Widget from './widget';
 
 const WIDGET = new Widget();
 
+/*
+ * Handle messages sent from mCaptcha widget iframe
+ */
 export const handle = (e: MessageEvent) => {
   if (e.origin !== WIDGET.getHost()) {
     console.error(
@@ -26,4 +29,9 @@ export const handle = (e: MessageEvent) => {
   WIDGET.setToken(token);
 };
 
-window.addEventListener('message', e => handle(e));
+/*
+ * Register mCaptcha widget
+ */
+const init = () => window.addEventListener('message', e => handle(e));
+
+export default init;
