@@ -10,9 +10,9 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     path: dist,
-    filename: 'bundle.js',
+    filename: 'index.js',
     libraryTarget: 'umd',
-    library: 'mcaptcha-client'
+    library: 'mcaptcha-glue'
   },
   module: {
     rules: [

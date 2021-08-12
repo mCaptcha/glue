@@ -1,22 +1,42 @@
 {
   "author": "Aravinth Manivannan <realaravinth@batsense.net>",
-  "name": "mcaptcha-client",
+  "name": "mcaptcha-glue",
+  "description": "glue code to setup mCaptcha on your website",
   "license": "(MIT OR Apache-2.0)",
-  "keywords": [
-    "mCaptcha",
-    "CAPTCHA",
-    "proof of work"
-  ],
+  "keywords": ["mCaptcha", "CAPTCHA", "proof of work"],
   "homepage": "https://mcaptcha.org",
+  "browser": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "bugs": {
-    "url": "https://github.com/mCaptcha/browser/issues",
+    "url": "https://github.com/mCaptcha/glue/issues",
     "email": "realaravinth@batsense.net"
   },
+
+  "funding": [
+    {
+      "type": "individual",
+      "url": "http://mcaptcha.org/donate"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/mcaptcha"
+    },
+
+    {
+      "type": "individual",
+      "url": "http://batsense.net/donate"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/realaravinth"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mCaptcha/browser.git"
+    "url": "https://github.com/mCaptcha/glue.git"
   },
-  "version": "0.1.0",
+  "version": "0.1.0-alpha-1",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open -d",
@@ -28,17 +48,11 @@
     "@types/jsdom": "^16.2.10",
     "@types/node": "^15.0.2",
     "@types/sinon": "^10.0.0",
-    "@wasm-tool/wasm-pack-plugin": "^1.1.0",
     "copy-webpack-plugin": "^5.0.3",
-    "css-loader": "^5.2.4",
-    "css-minimizer-webpack-plugin": "^2.0.0",
-    "dart-sass": "^1.25.0",
     "jest": "^26.6.3",
     "jest-fetch-mock": "^3.0.3",
     "jsdom": "^16.5.3",
-    "mini-css-extract-plugin": "^1.6.0",
     "rimraf": "^3.0.0",
-    "sass-loader": "^11.0.1",
     "sinon": "^10.0.0",
     "ts-jest": "^26.5.6",
     "ts-loader": "^8.0.0",
