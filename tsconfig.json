@@ -40,6 +40,7 @@
     "jest.config.ts",
     "**/*.test.ts",
     "tmp",
+    "dist",
     "**/*setupTests"
   ],
 
