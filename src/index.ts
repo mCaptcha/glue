@@ -32,4 +32,6 @@ export const handle = (e: MessageEvent) => {
 /*
  * Register mCaptcha widget
  */
-window.addEventListener('message', e => handle(e));
+export const init = () => {
+  window.addEventListener('message', e => handle(e));
+};

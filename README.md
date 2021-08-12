@@ -31,7 +31,10 @@ mCaptcha
     frameborder="0"
   ></iframe>
 </div>
-<script src="./dist/bundle.js"></script>
+<script src="../dist/index.js"></script>
+<script charset="utf-8">
+  mcaptchaGlue.init();
+</script>
 ```
 
 ## Example

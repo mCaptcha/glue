@@ -10,6 +10,14 @@
 
 ### Changed
 
+- [external] event handler is no longer automatically registered. The
+  user is expected to call `init()`. See
+  [`./static/embeded.html`](./static/embeded.html) for more information.
+
+## `0.1.0-alpha-2`
+
+### Changed
+
 - [internal] verify message origin from `iframe` source
 
 ### Removed

@@ -12,7 +12,7 @@ module.exports = {
     path: dist,
     filename: 'index.js',
     libraryTarget: 'umd',
-    library: 'mcaptcha-glue'
+    library: 'mcaptchaGlue'
   },
   module: {
     rules: [
