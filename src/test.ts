@@ -10,7 +10,6 @@
  */
 
 import Widget from './widget';
-import * as lib from './index';
 import * as wLib from './widget';
 
 'use strict';
@@ -20,7 +19,7 @@ it('Widget works', () => {
 
   try {
     w.get();
-  } catch (e) {
+  } catch (e: any) {
     expect(e.message).toContain('is undefined');
   }
 
