@@ -41,7 +41,7 @@ jobs:
         run: yarn doc
 
       - name: Deploy Docuemntation to GitHub Pages
-        if: github.repository == 'mCaptcha/browser' && github.ref == 'refs/heads/master'
+        if: github.repository == 'mCaptcha/glue' && github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
