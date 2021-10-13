@@ -9,8 +9,8 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-export const INPUT_NAME = 'mcaptcha__token';
-export const ID = 'mcaptcha-widget__iframe';
+export const INPUT_NAME = "mcaptcha__token";
+export const ID = "mcaptcha-widget__iframe";
 
 class Widget {
   iframeElement: HTMLIFrameElement | null = null;
@@ -60,7 +60,7 @@ class Widget {
    */
   setToken(val: string) {
     if (this.inputElement === null || this.inputElement === undefined) {
-      this.inputElement = document.createElement('input');
+      this.inputElement = document.createElement("input");
       this.inputElement.id = INPUT_NAME;
       this.inputElement.name = INPUT_NAME;
       this.inputElement.hidden = true;

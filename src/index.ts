@@ -9,7 +9,7 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-import Widget from './widget';
+import Widget from "./widget";
 
 const WIDGET = new Widget();
 
@@ -33,5 +33,5 @@ export const handle = (e: MessageEvent) => {
  * Register mCaptcha widget
  */
 export const init = () => {
-  window.addEventListener('message', e => handle(e));
+  window.addEventListener("message", e => handle(e));
 };

@@ -45,6 +45,7 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open -d",
     "test": "yarn build && yarn jest",
+    "lint": "yarn run eslint src",
     "doc": "yarn build && yarn typedoc src/index.ts"
   },
   "devDependencies": {
@@ -52,6 +53,8 @@
     "@types/jsdom": "^16.2.10",
     "@types/node": "^16.10.4",
     "@types/sinon": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "copy-webpack-plugin": "^9.0.1",
     "eslint": "^8.0.0",
     "jest": "^27.2.5",

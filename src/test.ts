@@ -9,38 +9,38 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-import Widget from './widget';
-import * as wLib from './widget';
+import Widget from "./widget";
+import * as wLib from "./widget";
 
-'use strict';
+"use strict";
 
-it('Widget works', () => {
+it("Widget works", () => {
   const w = new Widget();
 
   try {
     w.get();
   } catch (e: any) {
-    expect(e.message).toContain('is undefined');
+    expect(e.message).toContain("is undefined");
   }
 
-  const IFRAME = document.createElement('iframe');
-  const IFRAM_SOURCE = 'https://demo.mcaptcha.org/widget/?sitekey=idontexist';
-  IFRAME.id = 'mcaptcha-widget__iframe';
+  const IFRAME = document.createElement("iframe");
+  const IFRAM_SOURCE = "https://demo.mcaptcha.org/widget/?sitekey=idontexist";
+  IFRAME.id = "mcaptcha-widget__iframe";
   IFRAME.src = IFRAM_SOURCE;
 
-  const container = document.createElement('div');
+  const container = document.createElement("div");
   container.appendChild(IFRAME);
 
-  const FORM = document.createElement('form');
+  const FORM = document.createElement("form");
   FORM.appendChild(container);
   document.body.appendChild(FORM);
 
   expect(w.get()).toBe(IFRAME);
   expect(w.getParent()).toBe(container);
   expect(w.getParent()).toBe(container);
-  expect(w.getHost()).toContain('demo.mcaptcha.org');
+  expect(w.getHost()).toContain("demo.mcaptcha.org");
 
-  const token = 'token';
+  const token = "token";
   w.setToken(token);
   const input = <HTMLInputElement>document.getElementById(wLib.INPUT_NAME);
   expect(input.value).toBe(token);

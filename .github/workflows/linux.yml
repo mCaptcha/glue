@@ -4,8 +4,8 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
   push:
-    branches:
-      - master
+    branches-ignore:
+      - '!gh-pages'
 
 jobs:
   build_and_test:
@@ -22,12 +22,14 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/yarn.lock') }}
 
       - uses: actions/setup-node@v2
-        if: matrix.version == '1.51.0' && (github.repository == 'mCaptcha/browser')
         with:
-          node-version: '14.x'
+          node-version: "14.x"
 
       - name: Install JavaScript Dependencies
         run: yarn install
+
+      - name: Lint
+        run: yarn lint
 
       - name: Build
         run: yarn build
@@ -36,13 +38,18 @@ jobs:
         run: yarn test
 
       - name: generate TS documentation
-        if: github.repository == 'mCaptcha/browser'
         run: yarn doc
 
       - name: Deploy Docuemntation to GitHub Pages
-        if: github.repository == 'mCaptcha/browser'
+        if: github.repository == 'mCaptcha/browser' && github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: docs/
+
+      - name: Upload to Codecov
+        if: github.ref == 'refs/heads/master'
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
