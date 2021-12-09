@@ -23,22 +23,22 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "14.x"
+          node-version: "17.x"
 
       - name: Install JavaScript Dependencies
         run: yarn install
 
       - name: Lint
-        run: yarn lint
+        run: cd packages/vanilla && yarn lint
 
       - name: Build
-        run: yarn build
+        run: cd packages/vanilla && yarn build
 
       - name: Test
-        run: yarn test
+        run: cd packages/vanilla && yarn test
 
       - name: generate TS documentation
-        run: yarn doc
+        run: lerna run doc
 
       - name: Deploy Docuemntation to GitHub Pages
         if: github.repository == 'mCaptcha/glue' && github.ref == 'refs/heads/master'
