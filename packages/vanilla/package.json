@@ -1,0 +1,74 @@
+{
+  "author": "Aravinth Manivannan <realaravinth@batsense.net>",
+  "name": "@mcaptcha/vanilla-glue",
+  "description": "glue code to setup mCaptcha on your website",
+  "version": "0.1.0-alpha-5",
+  "license": "(MIT OR Apache-2.0)",
+  "keywords": [
+    "mCaptcha",
+    "CAPTCHA",
+    "proof of work"
+  ],
+  "homepage": "https://mcaptcha.org",
+  "browser": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/mCaptcha/glue/issues",
+    "email": "realaravinth@batsense.net"
+  },
+  "funding": [
+    {
+      "type": "individual",
+      "url": "http://mcaptcha.org/donate"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/mcaptcha"
+    },
+    {
+      "type": "individual",
+      "url": "http://batsense.net/donate"
+    },
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/realaravinth"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mCaptcha/glue.git"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open -d",
+    "test": "yarn jest",
+    "lint": "yarn run eslint src",
+    "doc": "yarn typedoc src/index.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/jsdom": "^16.2.10",
+    "@types/node": "^16.10.4",
+    "@types/sinon": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "eslint": "^8.4.1",
+    "jest": "^27.2.5",
+    "jest-fetch-mock": "^3.0.3",
+    "jsdom": "^18.0.0",
+    "rimraf": "^3.0.0",
+    "sinon": "^11.1.2",
+    "ts-jest": "^27.0.5",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.3.0",
+    "typedoc": "^0.22.5",
+    "typescript": "^4.1.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^4.3.1"
+  }
+}
