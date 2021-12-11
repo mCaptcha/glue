@@ -11,8 +11,33 @@
 
 import Widget from "./widget";
 import * as wLib from "./widget";
+import * as glue from "./index";
 
-"use strict";
+("use strict");
+
+const IFRAME_ID = "mcaptcha-widget__iframe";
+
+const setup = (source: URL) => {
+  const IFRAME = document.createElement("iframe");
+  const IFRAM_SOURCE = source.toString();
+  IFRAME.id = IFRAME_ID;
+  IFRAME.src = IFRAM_SOURCE;
+
+  const container = document.createElement("div");
+  container.appendChild(IFRAME);
+
+  const FORM = document.createElement("form");
+  FORM.appendChild(container);
+  document.body.appendChild(FORM);
+};
+
+afterEach(() => {
+  console.log("removing div element");
+  let div = document.querySelector("div");
+  if (div) {
+    div.remove();
+  }
+});
 
 it("Widget works", () => {
   const w = new Widget();
@@ -23,25 +48,54 @@ it("Widget works", () => {
     expect(e.message).toContain("is undefined");
   }
 
-  const IFRAME = document.createElement("iframe");
-  const IFRAM_SOURCE = "https://demo.mcaptcha.org/widget/?sitekey=idontexist";
-  IFRAME.id = "mcaptcha-widget__iframe";
-  IFRAME.src = IFRAM_SOURCE;
+  const IFRAM_SOURCE = new URL(
+    "https://demo.mcaptcha.org/widget/?sitekey=idontexist"
+  );
+  setup(IFRAM_SOURCE);
 
-  const container = document.createElement("div");
-  container.appendChild(IFRAME);
-
-  const FORM = document.createElement("form");
-  FORM.appendChild(container);
-  document.body.appendChild(FORM);
-
+  const IFRAME = <HTMLElement>document.getElementById(IFRAME_ID);
   expect(w.get()).toBe(IFRAME);
-  expect(w.getParent()).toBe(container);
-  expect(w.getParent()).toBe(container);
+  expect(w.getParent()).toBe(IFRAME.parentElement);
   expect(w.getHost()).toContain("demo.mcaptcha.org");
 
   const token = "token";
   w.setToken(token);
   const input = <HTMLInputElement>document.getElementById(wLib.INPUT_NAME);
   expect(input.value).toBe(token);
+});
+
+it("message handler works", async () => {
+  const IFRAM_SOURCE = new URL(
+    "https://demo.mcaptcha.org/widget/?sitekey=idontexist"
+  );
+  setup(IFRAM_SOURCE);
+  let input: HTMLInputElement | null = null;
+
+  glue.init();
+
+  const token = ["foo", "bar"];
+  token.forEach((t) => {
+    let data = {
+      data: {
+        token: t,
+      },
+      origin: IFRAM_SOURCE.toString(),
+    };
+    let event = new MessageEvent("message", data);
+    glue.handle(event);
+    if (!input) {
+      input = <HTMLInputElement>document.getElementById(wLib.INPUT_NAME);
+    }
+    expect(input.value).toBe(t);
+
+    data = {
+      data: {
+        token: `${t}2`,
+      },
+      origin: new URL("https://fake.example.com").toString(),
+    };
+    event = new MessageEvent("message", data);
+    glue.handle(event);
+    expect(input.value).toBe(t);
+  });
 });

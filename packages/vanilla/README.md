@@ -27,7 +27,6 @@ mCaptcha
     sandbox="allow-same-origin allow-scripts"
     width="304"
     height="78"
-    data-mcaptcha_host="<mCaptcha HOST LOCATION>"
     frameborder="0"
   ></iframe>
 </div>

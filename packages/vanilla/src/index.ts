@@ -17,11 +17,12 @@ const WIDGET = new Widget();
  * Handle messages sent from mCaptcha widget iframe
  */
 export const handle = (e: MessageEvent) => {
-  if (new URL(e.origin).host !== WIDGET.getHost()) {
+  console.log(`message received from ${e.origin} with data: ${e.data.token}`);
+  if (new URL(e.origin).host != WIDGET.getHost()) {
     console.error(
       `expected message from ${WIDGET.getHost()} but received message from ${
         e.origin
-      }. Aborting.`,
+      }. Aborting.`
     );
     return;
   }
@@ -33,5 +34,5 @@ export const handle = (e: MessageEvent) => {
  * Register mCaptcha widget
  */
 export const init = () => {
-  window.addEventListener("message", e => handle(e));
+  window.addEventListener("message", handle);
 };
