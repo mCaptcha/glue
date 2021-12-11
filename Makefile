@@ -4,10 +4,11 @@ default:
 
 build: default
 
-doc:
+docs:
 	@-/bin/rm -rf doc
 	@-mkdir doc
-	lerna run doc
+	cd packages/vanilla && yarn doc
+	cd packages/react-glue && yarn doc
 	cp -r ./packages/vanilla/docs doc/vanilla
 	cp -r ./packages/react-glue/docs doc/react-glue
 

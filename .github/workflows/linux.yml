@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
   push:
     branches-ignore:
-      - '!gh-pages'
+      - "!gh-pages"
 
 jobs:
   build_and_test:
@@ -18,7 +18,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            node_modules
+            **/node_modules
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/yarn.lock') }}
 
       - uses: actions/setup-node@v2
@@ -26,19 +26,20 @@ jobs:
           node-version: "17.x"
 
       - name: Install JavaScript Dependencies
-        run: yarn install
+        run:
+          make install
 
           #      - name: Lint
           #        run: cd packages/vanilla && yarn lint
 
       - name: Build
-        run: cd packages/vanilla && yarn build
+        run: make
 
       - name: Test
-        run: cd packages/vanilla && yarn test
+        run: make test
 
       - name: generate TS documentation
-        run: make doc
+        run: make docs
 
       - name: Deploy Docuemntation to GitHub Pages
         if: github.repository == 'mCaptcha/glue' && github.ref == 'refs/heads/master'
