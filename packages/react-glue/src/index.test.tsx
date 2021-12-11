@@ -47,4 +47,36 @@ describe('MCaptchaWidget', () => {
       }
     }
   })
+  it('message handler works', () => {
+    if (container) {
+      let link = new URL('http://example.com/foo/bar')
+      act(() => {
+        render(<MCaptchaWidget widgetLink={link} />, container)
+      })
+      let w = container.querySelector(`#${INPUT_NAME}`)
+      expect(w.value).toBe('')
+      const token = ['foo', 'bar']
+      token.forEach((t) => {
+        let data = {
+          data: {
+            token: t
+          },
+          origin: link
+        }
+        let event = new MessageEvent('message', data)
+        act(() => window.dispatchEvent(event))
+        expect(w.value).toBe(t)
+
+        data = {
+          data: {
+            token: `${t}2`
+          },
+          origin: new URL('https://fake.example.com')
+        }
+        event = new MessageEvent('message', data)
+        act(() => window.dispatchEvent(event))
+        expect(w.value).toBe(t)
+      })
+    }
+  })
 })

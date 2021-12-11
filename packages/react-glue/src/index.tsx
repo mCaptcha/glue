@@ -56,7 +56,7 @@ export const MCaptchaWidget = ({
   const [token, setToken] = useState('')
 
   const handle = (e: MessageEvent): void => {
-    if (new URL(e.origin).host !== iframeSource.host) {
+    if (new URL(e.origin).host != iframeSource.host) {
       console.error(
         `expected message from ${iframeSource.host} but received message from ${e.origin}. Aborting.`
       )
@@ -78,6 +78,7 @@ export const MCaptchaWidget = ({
         id={INPUT_NAME}
         name={INPUT_NAME}
         value={token}
+        readOnly
         hidden
         required
         type='text'

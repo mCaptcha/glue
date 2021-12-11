@@ -4,12 +4,7 @@
   "description": "glue code to setup mCaptcha on your React website",
   "author": "Aravinth Manivannan <realaravinth@batsense.net>",
   "license": "(MIT OR Apache-2.0)",
-  "keywords": [
-    "mCaptcha",
-    "CAPTCHA",
-    "proof of work",
-    "react"
-  ],
+  "keywords": ["mCaptcha", "CAPTCHA", "proof of work", "react"],
   "homepage": "https://mcaptcha.org",
   "browser": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -53,7 +48,7 @@
     "test": "run-s test:unit test:build",
     "test:build": "run-s build",
     "test:lint": "eslint src/",
-    "test:unit": "cross-env CI=1 react-scripts test --coverage --env=jsdom",
+    "test:unit": "cross-env CI=1 react-scripts test --coverage -env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
@@ -92,7 +87,5 @@
     "typedoc": "^0.22.10",
     "typescript": "^3.7.5"
   },
-  "files": [
-    "dist"
-  ]
+  "files": ["dist"]
 }
