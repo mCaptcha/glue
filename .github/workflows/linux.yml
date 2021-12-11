@@ -23,7 +23,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "17.x"
+          node-version: "16.x"
 
       - name: Install JavaScript Dependencies
         run:
@@ -47,10 +47,11 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: packages/doc/
+          FOLDER: doc/
 
       - name: Upload to Codecov
         if: github.ref == 'refs/heads/master'
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: packages/vanilla/coverage/lcov.info,packages/react-glue/coverage/lcov.info
