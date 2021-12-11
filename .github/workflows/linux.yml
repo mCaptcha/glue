@@ -28,8 +28,8 @@ jobs:
       - name: Install JavaScript Dependencies
         run: yarn install
 
-      - name: Lint
-        run: cd packages/vanilla && yarn lint
+          #      - name: Lint
+          #        run: cd packages/vanilla && yarn lint
 
       - name: Build
         run: cd packages/vanilla && yarn build
@@ -38,7 +38,7 @@ jobs:
         run: cd packages/vanilla && yarn test
 
       - name: generate TS documentation
-        run: lerna run doc
+        run: make doc
 
       - name: Deploy Docuemntation to GitHub Pages
         if: github.repository == 'mCaptcha/glue' && github.ref == 'refs/heads/master'
@@ -46,7 +46,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: packages/vanilla/docs/
+          FOLDER: packages/doc/
 
       - name: Upload to Codecov
         if: github.ref == 'refs/heads/master'

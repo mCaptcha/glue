@@ -2,5 +2,20 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs"
+  },
+  "exclude": [
+    "node_modules",
+    "static",
+    "docs",
+    "jest.config.ts",
+    "**/*.test.tsx",
+    "tmp",
+    "dist",
+    "**/*setupTests"
+  ],
+
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
   }
 }
