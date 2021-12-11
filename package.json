@@ -6,10 +6,12 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/vanilla"
+      "packages/vanilla",
+      "packages/react-glue"
     ],
     "nohoist": [
-      "packages/*"
+      "packages/vanilla",
+      "packages/react-glue"
     ]
   },
   "license": "(MIT OR Apache-2.0)",
