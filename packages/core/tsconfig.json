@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "es5",
+    "lib": ["es2015", "dom"],
+    "module": "commonjs",
+    "allowJs": false,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "./dist/",
+    "rootDir": "./src/",
+    "removeComments": true,
+    "moduleResolution": "node",
+
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": [
+    "node_modules",
+    "static",
+    "docs",
+    "jest.config.ts",
+    "**/*.test.ts",
+    "**/test.ts",
+    "tmp",
+    "dist",
+    "**/*setupTests"
+  ],
+
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
+  }
+}
