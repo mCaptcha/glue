@@ -8,6 +8,7 @@ build: default
 docs:
 	@-/bin/rm -rf doc
 	@-mkdir doc
+	cd packages/core && yarn doc
 	cd packages/vanilla && yarn doc
 	cd packages/react-glue && yarn doc
 	cp -r ./packages/core/docs doc/core-glue
