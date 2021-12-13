@@ -25,6 +25,7 @@
     "docs",
     "jest.config.ts",
     "**/*.test.ts",
+    "**/test.ts",
     "tmp",
     "dist",
     "**/*setupTests"

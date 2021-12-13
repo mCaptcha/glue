@@ -9,30 +9,61 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-import Widget from "./widget";
+import { SiteKey, WidgetConfig, ConfigurationError } from "@mcaptcha/core-glue";
+import Receiver from "@mcaptcha/core-glue";
 
-const WIDGET = new Widget();
+export const INPUT_NAME = "mcaptcha__token";
+export const ID = "mcaptcha__widget-container";
 
-/*
- * Handle messages sent from mCaptcha widget iframe
- */
-export const handle = (e: MessageEvent) => {
-  console.log(`message received from ${e.origin} with data: ${e.data.token}`);
-  if (new URL(e.origin).host != WIDGET.getHost()) {
-    console.error(
-      `expected message from ${WIDGET.getHost()} but received message from ${
-        e.origin
-      }. Aborting.`
-    );
-    return;
+export default class Widget {
+  inputElement: HTMLInputElement;
+  receiver: Receiver;
+
+  constructor(config: WidgetConfig) {
+    this.receiver = new Receiver(config, this.setToken);
+    this.receiver.listen();
+
+    const parentElement = document.getElementById(ID);
+    if (parentElement === null || parentElement === undefined) {
+      throw new Error(`Element ${ID}'s parent element is undefined`);
+    }
+
+    this.inputElement = document.createElement("input");
+    this.inputElement.id = INPUT_NAME;
+    this.inputElement.name = INPUT_NAME;
+    this.inputElement.hidden = true;
+    this.inputElement.required = true;
+    parentElement.appendChild(this.inputElement);
+
+    const iframe_id = "mcaptcha-widget__iframe";
+    const iframe = document.createElement("iframe");
+    iframe.title = "mCaptcha";
+    iframe.src = this.receiver.widgetLink.toString();
+    iframe.ariaRoleDescription = "presentation";
+    iframe.name = iframe_id;
+    iframe.id = iframe_id;
+    iframe.scrolling = "no";
+    try {
+      (<any>iframe).sandbox = "allow-same-origin allow-scripts";
+    } catch {
+      try {
+        (<any>iframe).sandbox.add("allow-same-origin");
+        (<any>iframe).sandbox.add("allow-scripts");
+      } catch {
+        iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
+      }
+    }
+    iframe.width = "304";
+    iframe.height = "78";
+    iframe.frameBorder = "0";
+
+    parentElement.appendChild(iframe);
   }
-  const token = e.data.token;
-  WIDGET.setToken(token);
-};
 
-/*
- * Register mCaptcha widget
- */
-export const init = () => {
-  window.addEventListener("message", handle);
-};
+  /*
+   * Set token value to a hidden input field in the form
+   */
+  setToken = (val: string) => (this.inputElement.value = val);
+}
+
+export { SiteKey, WidgetConfig, ConfigurationError };

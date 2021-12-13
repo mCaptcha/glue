@@ -1,8 +1,8 @@
 <div align="center">
 
-  <h1>PoW JavaScript library</h1>
+  <h1>Vanilla JavaScript Glue JavaScript library</h1>
 
-<strong>JavaScript library to generate PoW for mCaptcha</strong>
+<strong>Embed mCaptcha widget in webpages built using Vanilla JavaScript</strong>
 
 [![0.1.0](https://img.shields.io/badge/TypeScript_docs-master-2b7489)](https://mcaptcha.github.io/glue/)
 ![Build)](<https://github.com/mCaptcha/glue/workflows/CI%20(Linux)/badge.svg>)
@@ -16,23 +16,18 @@ Add this snippet to the form which requires to be protected using
 mCaptcha
 
 ```html
-<div style="width: 304px; height: 78px;">
-  <iframe
-    title="mCaptcha"
-    src="<LINK TO WIDGET>"
-    role="presentation"
-    name="mcaptcha-widget__iframe"
-    id="mcaptcha-widget__iframe"
-    scrolling="no"
-    sandbox="allow-same-origin allow-scripts"
-    width="304"
-    height="78"
-    frameborder="0"
-  ></iframe>
-</div>
+<div
+	id="mcaptcha__widget-container"
+	style="width: 304px; height: 78px"
+></div>
 <script src="../dist/index.js"></script>
 <script charset="utf-8">
-  mcaptchaGlue.init();
+	let config = {
+		widgetLink: new URL(
+			"https://demo.mcaptcha.org/widget/?sitekey=pHy0AktWyOKuxZDzFfoaewncWecCHo23"
+		),
+	};
+	new mcaptchaGlue.default(config);
 </script>
 ```
 

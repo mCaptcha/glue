@@ -9,69 +9,50 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-import Widget from "./widget";
-import * as wLib from "./widget";
-import * as glue from "./index";
+import Widget, { INPUT_NAME, ID } from "./index";
 
 ("use strict");
 
-const IFRAME_ID = "mcaptcha-widget__iframe";
-
-const setup = (source: URL) => {
-  const IFRAME = document.createElement("iframe");
-  const IFRAM_SOURCE = source.toString();
-  IFRAME.id = IFRAME_ID;
-  IFRAME.src = IFRAM_SOURCE;
-
+beforeEach(() => {
   const container = document.createElement("div");
-  container.appendChild(IFRAME);
-
-  const FORM = document.createElement("form");
-  FORM.appendChild(container);
-  document.body.appendChild(FORM);
-};
+  container.id = ID;
+  document.body.appendChild(container);
+});
 
 afterEach(() => {
   console.log("removing div element");
-  let div = document.querySelector("div");
-  if (div) {
-    div.remove();
+  try {
+    let div = document.querySelector("div");
+    if (div) {
+      div.remove();
+    }
+  } catch {}
+});
+
+const widgetLink = new URL(
+  "https://demo.mcaptcha.org/widget/?sitekey=idontexist"
+);
+
+it("Widget fails when mcaptcha__widget-container div is absent", () => {
+  document.getElementById(ID)?.remove();
+  try {
+    new Widget({ widgetLink: new URL(widgetLink) });
+  } catch (e) {
+    expect((<Error>e).message).toContain(ID);
   }
 });
 
 it("Widget works", () => {
-  const w = new Widget();
-
-  try {
-    w.get();
-  } catch (e: any) {
-    expect(e.message).toContain("is undefined");
-  }
-
-  const IFRAM_SOURCE = new URL(
-    "https://demo.mcaptcha.org/widget/?sitekey=idontexist"
-  );
-  setup(IFRAM_SOURCE);
-
-  const IFRAME = <HTMLElement>document.getElementById(IFRAME_ID);
-  expect(w.get()).toBe(IFRAME);
-  expect(w.getParent()).toBe(IFRAME.parentElement);
-  expect(w.getHost()).toContain("demo.mcaptcha.org");
-
+  const w = new Widget({ widgetLink: new URL(widgetLink) });
   const token = "token";
   w.setToken(token);
-  const input = <HTMLInputElement>document.getElementById(wLib.INPUT_NAME);
+  const input = <HTMLInputElement>document.getElementById(INPUT_NAME);
   expect(input.value).toBe(token);
 });
 
 it("message handler works", async () => {
-  const IFRAM_SOURCE = new URL(
-    "https://demo.mcaptcha.org/widget/?sitekey=idontexist"
-  );
-  setup(IFRAM_SOURCE);
-  let input: HTMLInputElement | null = null;
-
-  glue.init();
+  const w = new Widget({ widgetLink: new URL(widgetLink) });
+  let input = <HTMLInputElement>document.getElementById(INPUT_NAME);
 
   const token = ["foo", "bar"];
   token.forEach((t) => {
@@ -79,12 +60,11 @@ it("message handler works", async () => {
       data: {
         token: t,
       },
-      origin: IFRAM_SOURCE.toString(),
+      origin: widgetLink.toString(),
     };
     let event = new MessageEvent("message", data);
-    glue.handle(event);
+    w.receiver.handle(event);
     if (!input) {
-      input = <HTMLInputElement>document.getElementById(wLib.INPUT_NAME);
     }
     expect(input.value).toBe(t);
 
@@ -95,7 +75,7 @@ it("message handler works", async () => {
       origin: new URL("https://fake.example.com").toString(),
     };
     event = new MessageEvent("message", data);
-    glue.handle(event);
+    w.receiver.handle(event);
     expect(input.value).toBe(t);
   });
 });

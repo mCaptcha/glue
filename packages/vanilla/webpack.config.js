@@ -1,29 +1,36 @@
-('use strict');
-const path = require('path');
+("use strict");
+const path = require("path");
 
-const dist = path.resolve(__dirname, 'dist');
+const dist = path.resolve(__dirname, "dist");
 
 module.exports = {
-  devtool: 'source-map',
+  //devtool: 'inline-source-map',
   //mode: 'development',
-  mode: 'production',
-  entry: './src/index.ts',
+  mode: "production",
+  entry: "./src/",
   output: {
     path: dist,
-    filename: 'index.js',
-    libraryTarget: 'umd',
-    library: 'mcaptchaGlue'
+    libraryTarget: "umd",
+    filename: "index.js",
+    library: "mcaptchaGlue",
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
+        test: /\.ts$/,
+        loader: "ts-loader",
       },
-
-      ],
+    ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: [".ts", ".tsx", ".js"],
+  },
+
+  plugins: [],
+  optimization: {
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      "...",
+    ],
   },
 };

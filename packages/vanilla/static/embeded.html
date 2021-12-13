@@ -7,24 +7,19 @@
   </head>
   <body>
     <form method="get" accept-charset="utf-8">
-      <div style="width: 304px; height: 78px;">
-        <iframe
-          title="mCaptcha"
-          src="http://localhost:7000/widget/?sitekey=ZOTpc1mGUGRwPWrX7WNdPH9WlUXp5yLk"
-          role="presentation"
-          name="mcaptcha-widget__iframe"
-          id="mcaptcha-widget__iframe"
-          scrolling="no"
-          sandbox="allow-same-origin allow-scripts"
-          width="304"
-          height="78"
-          frameborder="0"
-        ></iframe>
-      </div>
+      <div
+        id="mcaptcha__widget-container"
+        style="width: 304px; height: 78px"
+      ></div>
     </form>
   </body>
   <script src="../dist/index.js"></script>
   <script charset="utf-8">
-	  mcaptchaGlue.init();
+    let config = {
+      widgetLink: new URL(
+        "https://demo.mcaptcha.org/widget/?sitekey=pHy0AktWyOKuxZDzFfoaewncWecCHo23"
+      ),
+    };
+    new mcaptchaGlue.default(config);
   </script>
 </html>
