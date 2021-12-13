@@ -12,23 +12,8 @@
 import * as React from 'react'
 import { useState, useEffect, ReactElement } from 'react'
 
-/** Configuration for MCaptchaWidget */
-export type Config = {
-  /** URL of the widget. Use this only when you are using  a self-hosted
-   * instance of mCaptcha with a non-standard(unofficial) path(i.e, widgets
-   * are not served from `/widget/?stiekey=uniqueSitekey` */
-  widgetLink?: URL
-  /** site key as given in the admin dashboard. Widget
-   * link will be derived from this.
-   */
-  siteKey?: string
-}
-
-/** configuration error thrown by MCaptchaWidget */
-export class ConfigurationError extends Error {
-  /** error message */
-  message = 'Provide either widget link or site key to display mCaptcha widget'
-}
+import Widget, { ConfigurationError } from '@mcaptcha/core-glue'
+import * as lib from '@mcaptcha/core-glue'
 
 export const INPUT_NAME = 'mcaptcha__token'
 /**
@@ -44,43 +29,18 @@ export const INPUT_NAME = 'mcaptcha__token'
  * @throws {ConfigurationError}: This error is thrown when neither widget link
  * nor site key is provided to this compoenent
  */
-export const MCaptchaWidget = ({
-  widgetLink,
-  siteKey
-}: Config): ReactElement => {
+export const MCaptchaWidget = (config: WidgetConfig): ReactElement => {
   const containerStyle = {
     width: '340px',
     height: '78px'
   }
 
-  let iframeSource: URL
-  if (widgetLink) {
-    iframeSource = widgetLink
-  } else if (siteKey) {
-    iframeSource = new URL(
-      `https://demo.mcaptcha.org/widget/?sitekey=${siteKey}`
-    )
-  } else {
-    throw new ConfigurationError()
-  }
-
   const [token, setToken] = useState('')
-
-  const handle = (e: MessageEvent): void => {
-    if (new URL(e.origin).host != iframeSource.host) {
-      console.error(
-        `expected message from ${iframeSource.host} but received message from ${e.origin}. Aborting.`
-      )
-      return
-    }
-    console.log(`received message, setting token to ${e.data.token}`)
-    setToken(e.data.token)
-  }
+  const w = new Widget(config, setToken)
 
   useEffect(() => {
-    window.addEventListener('message', handle)
-    const cleanup = (): void => window.removeEventListener('message', handle)
-    return cleanup
+    w.listen()
+    return () => w.destroy()
   })
 
   return (
@@ -96,7 +56,7 @@ export const MCaptchaWidget = ({
       />
       <iframe
         title='mCaptcha'
-        src={iframeSource.toString()}
+        src={w.widgetLink.toString()}
         role='presentation'
         name='mcaptcha-widget__iframe'
         id='mcaptcha-widget__iframe'
@@ -109,4 +69,6 @@ export const MCaptchaWidget = ({
     </div>
   )
 }
-export default MCaptchaWidget
+export { ConfigurationError }
+export type SiteKey = lib.SiteKey
+export type WidgetConfig = lib.WidgetConfig

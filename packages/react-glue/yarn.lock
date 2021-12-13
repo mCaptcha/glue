@@ -1428,6 +1428,11 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
+"@mcaptcha/core-glue@^0.1.0-alpha-2":
+  version "0.1.0-alpha-2"
+  resolved "https://registry.yarnpkg.com/@mcaptcha/core-glue/-/core-glue-0.1.0-alpha-2.tgz#61a4b3b5729149cd8f4259219cd849249137441e"
+  integrity sha512-FCp/lmfEnIM4cnHt/rNzNpmHU9wGw5QsA2tFiyONfm5FLxbgrKwJvr05+pfLzIFjJNK2ZAQF/uX9cagYDFtknw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

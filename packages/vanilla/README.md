@@ -4,7 +4,7 @@
 
 <strong>Embed mCaptcha widget in webpages built using Vanilla JavaScript</strong>
 
-[![0.1.0](https://img.shields.io/badge/TypeScript_docs-master-2b7489)](https://mcaptcha.github.io/glue/)
+[![0.1.0](https://img.shields.io/badge/TypeScript_docs-master-2b7489)](https://mcaptcha.github.io/glue/vanilla)
 ![Build)](<https://github.com/mCaptcha/glue/workflows/CI%20(Linux)/badge.svg>)
 [![codecov](https://codecov.io/gh/mCaptcha/glue/branch/master/graph/badge.svg)](https://codecov.io/gh/mCaptcha/glue)
 

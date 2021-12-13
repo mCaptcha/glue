@@ -4,7 +4,12 @@
   "description": "glue code to setup mCaptcha on your React website",
   "author": "Aravinth Manivannan <realaravinth@batsense.net>",
   "license": "(MIT OR Apache-2.0)",
-  "keywords": ["mCaptcha", "CAPTCHA", "proof of work", "react"],
+  "keywords": [
+    "mCaptcha",
+    "CAPTCHA",
+    "proof of work",
+    "react"
+  ],
   "homepage": "https://mcaptcha.org",
   "browser": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -87,5 +92,10 @@
     "typedoc": "^0.22.10",
     "typescript": "^3.7.5"
   },
-  "files": ["dist"]
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@mcaptcha/core-glue": "^0.1.0-alpha-2"
+  }
 }
