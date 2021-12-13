@@ -1,7 +1,7 @@
 {
   "author": "Aravinth Manivannan <realaravinth@batsense.net>",
   "name": "@mcaptcha/core-glue",
-  "description": "shared glue code",
+  "description": "internal library containig shared glue code",
   "version": "0.1.0-alpha-1",
   "license": "(MIT OR Apache-2.0)",
   "keywords": [
