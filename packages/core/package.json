@@ -11,6 +11,7 @@
   ],
   "homepage": "https://mcaptcha.org",
   "browser": "dist/index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
