@@ -53,9 +53,34 @@ jobs:
           BRANCH: gh-pages
           FOLDER: doc/
 
-      - name: Upload to Codecov
+      - name: Upload vanilla coverage to Codecov
         if: github.ref == 'refs/heads/master'
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: packages/vanilla/coverage/lcov.info,packages/core/coverage/lcov.info,packages/react/coverage/lcov.info,packages/svelte/coverage/lcov.info
+          files: packages/vanilla/coverage/lcov.info
+          flags: vanilla
+
+      - name: Upload core coverage to Codecov
+        if: github.ref == 'refs/heads/master'
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: packages/core/coverage/lcov.info
+          flags: core
+
+      - name: Upload React coverage to Codecov
+        if: github.ref == 'refs/heads/master'
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: packages/react/coverage/lcov.info,
+          flags: react
+
+      - name: Upload Svelte to Codecov
+        if: github.ref == 'refs/heads/master'
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: packages/svelte/coverage/lcov.info
+          flags: svelte
