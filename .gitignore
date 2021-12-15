@@ -16,3 +16,4 @@ pkg/
 tsconfig.tsbuildinfo
 doc
 *.tgz
+./packages/**/package

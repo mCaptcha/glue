@@ -28,7 +28,7 @@ To provide a smooth migration experience, glue code is implemented for
 the following frameworks. If you wish to see your framework supported,
 please open an issue!
 
-| Framework                        | Source Code                                  | Documentation                                                                                                       | npm package name                                               |
-| -------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Vanilla JavaScript(No Framework) | [packages/vanilla](./packages/vanilla)       | [![0.1.0](https://img.shields.io/badge/TypeScript_docs-master-2b7489)](https://mcaptcha.github.io/glue/vanilla)     | [`mcaptcha-glue`](https://www.npmjs.com/package/mcaptcha-glue) |
-| React JS                         | [packages/react-glue](./packages/react-glue) | [![0.1.0](https://img.shields.io/badge/TypeScript_docs-master-2b7489)](https://mcaptcha.github.io/glue/react-glue/) | TBA                                                            |
+| Framework                        | Source Code                            | Documentation                                                                                                   | npm package name                                               |
+| -------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Vanilla JavaScript(No Framework) | [packages/vanilla](./packages/vanilla) | [![0.1.0](https://img.shields.io/badge/TypeScript_docs-master-2b7489)](https://mcaptcha.github.io/glue/vanilla) | [`mcaptcha-glue`](https://www.npmjs.com/package/mcaptcha-glue) |
+| React JS                         | [packages/react](./packages/react)     | [![0.1.0](https://img.shields.io/badge/TypeScript_docs-master-2b7489)](https://mcaptcha.github.io/glue/react/)  | TBA                                                            |
