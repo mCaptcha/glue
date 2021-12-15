@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@mcaptcha/core-glue': ^0.1.0-alpha-2
+  '@mcaptcha/core-glue': ^0.1.0-alpha-3
   '@testing-library/jest-dom': ^4.2.4
   '@testing-library/react': ^9.5.0
   '@testing-library/user-event': ^7.2.1
@@ -33,7 +33,7 @@ specifiers:
   typescript: ^3.7.5
 
 dependencies:
-  '@mcaptcha/core-glue': 0.1.0-alpha-2
+  '@mcaptcha/core-glue': 0.1.0-alpha-3
 
 devDependencies:
   '@testing-library/jest-dom': 4.2.4
@@ -2780,8 +2780,8 @@ packages:
       chalk: 3.0.0
     dev: true
 
-  /@mcaptcha/core-glue/0.1.0-alpha-2:
-    resolution: {integrity: sha512-FCp/lmfEnIM4cnHt/rNzNpmHU9wGw5QsA2tFiyONfm5FLxbgrKwJvr05+pfLzIFjJNK2ZAQF/uX9cagYDFtknw==}
+  /@mcaptcha/core-glue/0.1.0-alpha-3:
+    resolution: {integrity: sha512-avphBVgf3PPDWuUoDsB2qiXAss2pc00lUILswJaMQofr8FQyflzkhha8H2Z+qGFiX0Iib/yyP2TOtBDbHqE9Tg==}
     dev: false
 
   /@mrmlnc/readdir-enhanced/2.2.1:

@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@mcaptcha/core-glue': ^0.1.0-alpha-2
+  '@mcaptcha/core-glue': ^0.1.0-alpha-3
   '@types/jest': ^27.0.2
   '@types/jsdom': ^16.2.10
   '@types/node': ^16.11.12
@@ -25,7 +25,7 @@ specifiers:
   webpack-dev-server: ^4.3.1
 
 dependencies:
-  '@mcaptcha/core-glue': 0.1.0-alpha-2
+  '@mcaptcha/core-glue': 0.1.0-alpha-3
 
 devDependencies:
   '@types/jest': 27.0.3
@@ -631,8 +631,8 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@mcaptcha/core-glue/0.1.0-alpha-2:
-    resolution: {integrity: sha512-FCp/lmfEnIM4cnHt/rNzNpmHU9wGw5QsA2tFiyONfm5FLxbgrKwJvr05+pfLzIFjJNK2ZAQF/uX9cagYDFtknw==}
+  /@mcaptcha/core-glue/0.1.0-alpha-3:
+    resolution: {integrity: sha512-avphBVgf3PPDWuUoDsB2qiXAss2pc00lUILswJaMQofr8FQyflzkhha8H2Z+qGFiX0Iib/yyP2TOtBDbHqE9Tg==}
     dev: false
 
   /@nodelib/fs.scandir/2.1.5:

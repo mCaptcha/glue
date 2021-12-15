@@ -96,6 +96,6 @@
     "dist"
   ],
   "dependencies": {
-    "@mcaptcha/core-glue": "^0.1.0-alpha-2"
+    "@mcaptcha/core-glue": "^0.1.0-alpha-3"
   }
 }
