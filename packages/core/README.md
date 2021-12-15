@@ -3,6 +3,7 @@
   <h1> Core Glue</h1>
   <strong>Shared code used in other JavaScript glue implementations</strong>
 
+[![NPM](https://img.shields.io/npm/v/@mcaptcha/core-glue.svg)](https://www.npmjs.com/package/@mcaptcha/core-glue)
 [![0.1.0](https://img.shields.io/badge/TypeScript_docs-master-2b7489)](https://mcaptcha.github.io/glue/core-glue)
 ![Build)](<https://github.com/mCaptcha/glue/workflows/CI%20(Linux)/badge.svg>)
 [![codecov](https://codecov.io/gh/mCaptcha/glue/branch/master/graph/badge.svg)](https://codecov.io/gh/mCaptcha/glue)
