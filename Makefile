@@ -1,31 +1,34 @@
-default:
-	cd packages/core && yarn build
-	cd packages/vanilla && yarn build
-	cd packages/react && yarn build
+default: ## Build all packages
+	cd packages/core && pnpm build
+	cd packages/vanilla && pnpm build
+	cd packages/react && pnpm build
 
-build: default
+build: default ## Build all packages
 
-docs:
+docs: ## Build documentation for all packages
 	@-/bin/rm -rf doc
 	@-mkdir doc
-	cd packages/core && yarn doc
-	cd packages/vanilla && yarn doc
-	cd packages/react && yarn doc
+	cd packages/core && pnpm doc
+	cd packages/vanilla && pnpm doc
+	cd packages/react && pnpm doc
 	cp -r ./packages/core/docs doc/core-glue
 	cp -r ./packages/vanilla/docs doc/vanilla
 	cp -r ./packages/react/docs doc/react
 
-clean:
+clean: ## Remove all dependencies and build cache
 	cd packages/core && /bin/rm -rf node_modules
 	cd packages/vanilla && /bin/rm -rf node_modules
 	cd packages/react && /bin/rm -rf node_modules
 
-install:
-	cd packages/core && yarn install
-	cd packages/vanilla && yarn install
-	cd packages/react && yarn install
+install: ## Install dependencies for all packages
+	cd packages/core && pnpm install
+	cd packages/vanilla && pnpm install
+	cd packages/react && pnpm install
 
-test:
-	cd packages/core && yarn test
-	cd packages/vanilla && yarn test
-	cd packages/react && yarn test
+help: ## Prints help for targets with comments
+	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+test: ## Test all packages
+	cd packages/core && pnpm test
+	cd packages/vanilla && pnpm test
+	cd packages/react && pnpm test

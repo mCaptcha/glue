@@ -45,9 +45,9 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open -d",
-    "test": "yarn jest",
-    "lint": "yarn run eslint src",
-    "doc": "yarn typedoc src/index.ts"
+    "test": "jest",
+    "lint": "eslint src",
+    "doc": "typedoc src/index.ts"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",

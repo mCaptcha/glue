@@ -25,6 +25,10 @@ jobs:
         with:
           node-version: "16.x"
 
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.24.0
+
       - name: Install JavaScript Dependencies
         run:
           make install
