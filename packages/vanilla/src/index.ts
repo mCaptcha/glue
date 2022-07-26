@@ -53,8 +53,8 @@ export default class Widget {
         iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
       }
     }
-    iframe.width = "304";
-    iframe.height = "78";
+    iframe.width = "100%";
+    iframe.height = "100%";
     iframe.frameBorder = "0";
 
     parentElement.appendChild(iframe);
