@@ -46,8 +46,8 @@
 		id="mcaptcha-widget__iframe"
 		scrolling="no"
 		sandbox="allow-same-origin allow-scripts"
-		width="304"
-		height="78"
+		width="100%"
+		height="100%"
 		frameBorder="0"
 	/>
 </div>
