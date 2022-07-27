@@ -2,7 +2,7 @@
   "author": "Aravinth Manivannan <realaravinth@batsense.net>",
   "name": "@mcaptcha/vanilla-glue",
   "description": "glue code to setup mCaptcha on your website",
-  "version": "0.1.0-alpha-1",
+  "version": "0.1.0-alpha-2",
   "license": "(MIT OR Apache-2.0)",
   "keywords": [
     "mCaptcha",
