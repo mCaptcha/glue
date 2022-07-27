@@ -51,10 +51,3 @@
 		frameBorder="0"
 	/>
 </div>
-
-<style>
-	.mcaptcha__widget-container {
-		width: 340px;
-		height: 78px;
-	}
-</style>
