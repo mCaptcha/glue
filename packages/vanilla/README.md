@@ -18,7 +18,6 @@ mCaptcha
 ```html
 <div
 	id="mcaptcha__widget-container"
-	style="width: 304px; height: 78px"
 ></div>
 <script src="../dist/index.js"></script>
 <script charset="utf-8">
