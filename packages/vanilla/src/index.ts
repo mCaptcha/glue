@@ -44,13 +44,14 @@ export default class Widget {
     iframe.id = iframe_id;
     iframe.scrolling = "no";
     try {
-      (<any>iframe).sandbox = "allow-same-origin allow-scripts";
+      (<any>iframe).sandbox = "allow-same-origin allow-scripts allow-popups";
     } catch {
       try {
         (<any>iframe).sandbox.add("allow-same-origin");
         (<any>iframe).sandbox.add("allow-scripts");
+        (<any>iframe).sandbox.add("allow-popups");
       } catch {
-        iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
+        iframe.setAttribute("sandbox", "allow-same-origin allow-scripts allow-popups");
       }
     }
     iframe.width = "100%";
