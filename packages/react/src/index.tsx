@@ -61,7 +61,7 @@ export const MCaptchaWidget = (config: WidgetConfig): ReactElement => {
         name='mcaptcha-widget__iframe'
         id='mcaptcha-widget__iframe'
         scrolling='no'
-        sandbox='allow-same-origin allow-scripts'
+        sandbox='allow-same-origin allow-scripts allow-popups'
         width='100%'
         height='100%'
         frameBorder='0'
