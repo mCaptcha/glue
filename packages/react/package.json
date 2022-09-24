@@ -1,6 +1,6 @@
 {
   "name": "@mcaptcha/react-glue",
-  "version": "0.1.0-alpha-2",
+  "version": "0.1.0-alpha-3",
   "description": "glue code to setup mCaptcha on your React website",
   "author": "Aravinth Manivannan <realaravinth@batsense.net>",
   "license": "(MIT OR Apache-2.0)",
