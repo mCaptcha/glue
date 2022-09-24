@@ -533,10 +533,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@mcaptcha/core-glue@^0.1.0-alpha-2":
-  version "0.1.0-alpha-2"
-  resolved "https://registry.yarnpkg.com/@mcaptcha/core-glue/-/core-glue-0.1.0-alpha-2.tgz#61a4b3b5729149cd8f4259219cd849249137441e"
-  integrity sha512-FCp/lmfEnIM4cnHt/rNzNpmHU9wGw5QsA2tFiyONfm5FLxbgrKwJvr05+pfLzIFjJNK2ZAQF/uX9cagYDFtknw==
+"@mcaptcha/core-glue@^0.1.0-alpha-3":
+  version "0.1.0-alpha-3"
+  resolved "https://registry.yarnpkg.com/@mcaptcha/core-glue/-/core-glue-0.1.0-alpha-3.tgz#16c11cb3751b6421999353dc10c032afd08ffa8b"
+  integrity sha512-avphBVgf3PPDWuUoDsB2qiXAss2pc00lUILswJaMQofr8FQyflzkhha8H2Z+qGFiX0Iib/yyP2TOtBDbHqE9Tg==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
