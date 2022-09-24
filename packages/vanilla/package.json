@@ -73,6 +73,6 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
-    "@mcaptcha/core-glue": "^0.1.0-alpha-3"
+    "@mcaptcha/core-glue": "^0.1.0-alpha-5"
   }
 }
