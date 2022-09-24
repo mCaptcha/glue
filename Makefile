@@ -12,7 +12,7 @@ docs: ## Build documentation for all packages
 	cd packages/core && pnpm doc
 	cd packages/vanilla && pnpm doc
 	cd packages/react && pnpm doc
-	cd packages/svelte && pnpm doc
+	cd packages/svelte && npm doc
 	cp -r ./packages/core/docs doc/core-glue
 	cp -r ./packages/vanilla/docs doc/vanilla
 	cp -r ./packages/react/docs doc/react
@@ -28,7 +28,7 @@ install: ## Install dependencies for all packages
 	cd packages/core && pnpm install
 	cd packages/vanilla && pnpm install
 	cd packages/react && pnpm install
-	cd packages/svelte && pnpm install
+	cd packages/svelte && npm install
 
 help: ## Prints help for targets with comments
 	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -37,4 +37,4 @@ test: ## Test all packages
 	cd packages/core && pnpm test
 	cd packages/vanilla && pnpm test
 	cd packages/react && pnpm test
-	cd packages/svelte && pnpm test
+	cd packages/svelte && npm test
