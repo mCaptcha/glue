@@ -44,3 +44,21 @@ reactive state, the core functionality is implemented in
 
 To implement `glue` for an unsupported framework, checkout
 [`@mcaptcha/core-glue`](https://www.npmjs.com/package/@mcaptcha/core-glue).
+
+## Funding
+
+### NLnet
+
+<div align="center">
+	<img
+		height="150px"
+		alt="NLnet NGIZero logo"
+		src="./static/third-party/NGIZero-green.hex.svg"
+	/>
+</div>
+
+<br />
+
+2023 development is funded through the [NGI0 Entrust
+Fund](https://nlnet.nl/entrust), via [NLnet](https://nlnet.nl/). Please
+see [here](https://nlnet.nl/project/mCaptcha/) for more details.
