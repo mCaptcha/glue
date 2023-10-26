@@ -3376,7 +3376,7 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.8
     dev: true
 
   /jsonc-parser@3.0.0:
@@ -3533,15 +3533,15 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
-  /minimist@1.2.5:
-    resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
+  /minimist@1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
   /mkdirp@0.5.5:
     resolution: {integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.8
     dev: true
 
   /mri@1.2.0:
@@ -4019,7 +4019,7 @@ packages:
     hasBin: true
     dependencies:
       buffer-crc32: 0.2.13
-      minimist: 1.2.5
+      minimist: 1.2.8
       sander: 0.5.1
       sourcemap-codec: 1.4.8
     dev: true
@@ -4163,7 +4163,7 @@ packages:
       chokidar: 3.5.2
       fast-glob: 3.2.7
       import-fresh: 3.3.0
-      minimist: 1.2.5
+      minimist: 1.2.8
       sade: 1.7.4
       source-map: 0.7.3
       svelte: 3.44.3
