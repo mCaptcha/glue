@@ -8,13 +8,7 @@
  * this program. If not, see <https://spdx.org/licenses/MIT.html> for
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
-import { ID, INPUT_NAME, INPUT_LABEL_ID } from "./const";
-import { SiteKey, WidgetConfig, ConfigurationError } from "@mcaptcha/core-glue";
 
-import Widget from "./widget";
-import { run } from "./widget";
-
-run();
-
-export default Widget;
-export { SiteKey, WidgetConfig, ConfigurationError };
+export const INPUT_NAME = "mcaptcha__token";
+export const INPUT_LABEL_ID = "mcaptcha__token-label";
+export const ID = "mcaptcha__widget-container";

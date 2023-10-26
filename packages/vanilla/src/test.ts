@@ -9,11 +9,27 @@
  * MIT or <http://www.apache.org/licenses/LICENSE-2.0> for Apache.
  */
 
-import Widget, { INPUT_NAME, ID } from "./index";
+import { INPUT_NAME, ID, INPUT_LABEL_ID } from "./const";
+import Widget from "./widget";
+import { run } from "./widget";
 
 ("use strict");
 
+const widgetLink = new URL(
+  "https://demo.mcaptcha.org/widget/?sitekey=idontexist"
+);
+
 beforeEach(() => {
+  const label = document.createElement("label");
+  label.id = INPUT_LABEL_ID;
+  label.htmlFor = INPUT_NAME;
+  label.dataset.mcaptcha_url = widgetLink.toString();
+
+  const input = document.createElement("input");
+  input.id = INPUT_NAME;
+  label.appendChild(input);
+  document.body.appendChild(label);
+
   const container = document.createElement("div");
   container.id = ID;
   document.body.appendChild(container);
@@ -22,16 +38,17 @@ beforeEach(() => {
 afterEach(() => {
   console.log("removing div element");
   try {
-    let div = document.querySelector("div");
-    if (div) {
-      div.remove();
-    }
+    [
+      document.querySelector("div"),
+      document.querySelector("label"),
+      document.querySelector("input"),
+    ].forEach((element) => {
+      if (element) {
+        element.remove();
+      }
+    });
   } catch {}
 });
-
-const widgetLink = new URL(
-  "https://demo.mcaptcha.org/widget/?sitekey=idontexist"
-);
 
 it("Widget fails when mcaptcha__widget-container div is absent", () => {
   document.getElementById(ID)?.remove();
@@ -78,4 +95,28 @@ it("message handler works", async () => {
     w.receiver.handle(event);
     expect(input.value).toBe(t);
   });
+});
+
+it("Widget runner works", () => {
+  run();
+});
+
+it("Widget runner doesn't work when label is absent", () => {
+  document.querySelector("label")?.remove();
+  try {
+    run();
+  } catch (e) {
+    expect((<Error>e).message).toContain(`Couldn't find "mcaptcha_url"`);
+  }
+
+  const label = document.createElement("label");
+  label.id = INPUT_LABEL_ID;
+  label.htmlFor = INPUT_NAME;
+  document.body.appendChild(label);
+
+  try {
+    run();
+  } catch (e) {
+    expect((<Error>e).message).toContain(`Couldn't find "mcaptcha_url"`);
+  }
 });
