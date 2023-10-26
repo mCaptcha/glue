@@ -1,6 +1,6 @@
 {
 	"name": "@mcaptcha/svelte-glue",
-	"version": "0.1.0-alpha-3",
+	"version": "0.1.0-rc1",
 	"description": "glue code to setup mCaptcha on your Svelte website",
 	"author": "Aravinth Manivannan <realaravinth@batsense.net>",
 	"license": "(MIT OR Apache-2.0)",
@@ -101,6 +101,6 @@
 		]
 	},
 	"dependencies": {
-		"@mcaptcha/core-glue": "0.1.0-alpha-5"
+		"@mcaptcha/core-glue": "0.1.0-rc1"
 	}
 }
