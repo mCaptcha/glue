@@ -1,14 +1,12 @@
 import React from 'react'
 
-import { MCaptchaWidget, WidgetConfig, SiteKey } from '@mcaptcha/react-glue'
-import 'react-glue/dist/index.css'
+import { MCaptchaWidget, WidgetConfig } from 'react-glue'
 
 const App = () => {
-  const siteKey: SiteKey = {
-    key: 'foo'
-  }
   const config: WidgetConfig = {
-    siteKey
+    widgetLink: new URL(
+      'https://demo.mcaptcha.org/widget/?sitekey=6FFcZhbDZ1eqvp12QFEN8LQH9yACJZ3W'
+    )
   }
   return <MCaptchaWidget {...config} />
 }
