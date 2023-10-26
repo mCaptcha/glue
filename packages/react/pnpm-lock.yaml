@@ -2802,7 +2802,7 @@ packages:
       '@svgr/core': 5.5.0
       '@svgr/plugin-jsx': 5.5.0
       '@svgr/plugin-svgo': 5.5.0
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3636,7 +3636,7 @@ packages:
     resolution: {integrity: sha512-OXwN5b9pCUXNQHJpwwD2qP40byEmSgzj8B4ydSN0uMNYWiFmJ6x6KwUllMmfk8Rwu/HJDFR7U8ubsWBoN0Xp0A==}
     engines: {node: '>=8.9'}
     dependencies:
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       regex-parser: 2.2.11
     dev: true
 
@@ -4031,7 +4031,7 @@ packages:
     dependencies:
       '@babel/core': 7.16.5
       find-cache-dir: 3.3.2
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
       webpack: 5.89.0
@@ -6625,7 +6625,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       schema-utils: 3.3.0
       webpack: 5.89.0
     dev: true
@@ -6877,7 +6877,7 @@ packages:
   /generic-names@2.0.1:
     resolution: {integrity: sha512-kPCHWa1m9wGG/OwQpeweTwM/PYiQLrUIxXbt/P4Nic3LbGjCP0YwrALHW1uNLKZ0LIMg+RF+XRlj2ekT9ZlZAQ==}
     dependencies:
-      loader-utils: 1.4.0
+      loader-utils: 1.4.2
     dev: true
 
   /gensync@1.0.0-beta.2:
@@ -8988,13 +8988,6 @@ packages:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
     dev: true
 
-  /json5@1.0.1:
-    resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
-    hasBin: true
-    dependencies:
-      minimist: 1.2.5
-    dev: true
-
   /json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
@@ -9007,7 +9000,7 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.8
     dev: true
 
   /jsonc-parser@3.2.0:
@@ -9142,22 +9135,13 @@ packages:
     engines: {node: '>=6.11.5'}
     dev: true
 
-  /loader-utils@1.4.0:
-    resolution: {integrity: sha512-qH0WSMBtn/oHuwjy/NucEgbx5dbxxnxup9s4PVXJUDHZBQY+s0NWA9rJf53RBnQZxfch7euUui7hpoAPvALZdA==}
+  /loader-utils@1.4.2:
+    resolution: {integrity: sha512-I5d00Pd/jwMD2QCduo657+YM/6L3KZu++pmX9VFncxaxvHcru9jx1lBaFft+r4Mt2jK0Yhp41XlRAihzPxHNCg==}
     engines: {node: '>=4.0.0'}
     dependencies:
       big.js: 5.2.2
       emojis-list: 3.0.0
-      json5: 1.0.1
-    dev: true
-
-  /loader-utils@2.0.2:
-    resolution: {integrity: sha512-TM57VeHptv569d/GKh6TAYdzKblwDNiumOdkFnejjD0XwTH87K90w3O7AiJRqdQoXygvi1VQTJTLGhJl7WqA7A==}
-    engines: {node: '>=8.9.0'}
-    dependencies:
-      big.js: 5.2.2
-      emojis-list: 3.0.0
-      json5: 2.2.0
+      json5: 1.0.2
     dev: true
 
   /loader-utils@2.0.4:
@@ -9486,10 +9470,6 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
-  /minimist@1.2.5:
-    resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
-    dev: true
-
   /minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
@@ -9498,7 +9478,7 @@ packages:
     resolution: {integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.8
     dev: true
 
   /mkdirp@1.0.4:
@@ -11789,7 +11769,7 @@ packages:
     dependencies:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.8.0
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       postcss: 7.0.39
       source-map: 0.6.1
     dev: true
