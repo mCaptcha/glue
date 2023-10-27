@@ -4,6 +4,10 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-License-Identifier: MIT
 
+export const INPUT_NAME = "mcaptcha__token";
+export const INPUT_LABEL_ID = "mcaptcha__token-label";
+export const INSTRUCTIONS_URL="https://mcaptcha.org/docs/user-manual/how-to-mcaptcha-without-js/"
+
 /**
  * Site key configuration
  */
