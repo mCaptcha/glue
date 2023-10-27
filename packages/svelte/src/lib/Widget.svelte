@@ -26,6 +26,7 @@ SPDX-License-Identifier: MIT
 
 	const INPUT_LABEL_ID = 'mcaptcha__token-label';
 	const INPUT_NAME = 'mcaptcha__token';
+	const INSTRUCTIONS_URL = "https://mcaptcha.org/docs/user-manual/how-to-mcaptcha-without-js/";
 
 	let token = '';
 
@@ -40,6 +41,7 @@ SPDX-License-Identifier: MIT
 
 <div class="mcaptcha__widget-container">
 	<label id={INPUT_LABEL_ID} for={INPUT_NAME} data-mcaptcha_url={w.widgetLink.toString()}>
+		mCaptcha authorization token. <a href={INSTRUCTIONS_URL}>Instructions</a>
 		<input id={INPUT_NAME} name={INPUT_NAME} value={token} readonly hidden required type="text" />
 	</label>
 	<iframe
