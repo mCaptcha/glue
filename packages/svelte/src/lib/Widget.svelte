@@ -4,7 +4,6 @@ SPDX-FileCopyrightText: 2023 Aravinth Manivannan <realaravinth@batsense.net>
 SPDX-License-Identifier: Apache-2.0
 SPDX-License-Identifier: MIT
 -->
-
 <script lang="ts">
 	/*
 	 * mCaptcha is a PoW based DoS protection software.
@@ -19,30 +18,49 @@ SPDX-License-Identifier: MIT
 
 	import { onMount, onDestroy } from 'svelte';
 	import { default as CoreWidget } from '@mcaptcha/core-glue';
-	import { WidgetConfig, INPUT_NAME } from '@mcaptcha/core-glue';
+	import { WidgetConfig } from '@mcaptcha/core-glue';
 
 	//export const ssr = false;
 	export let config: WidgetConfig;
 
 	const INPUT_LABEL_ID = 'mcaptcha__token-label';
 	const INPUT_NAME = 'mcaptcha__token';
-	const INSTRUCTIONS_URL = "https://mcaptcha.org/docs/user-manual/how-to-mcaptcha-without-js/";
+	const INSTRUCTIONS_URL = 'https://mcaptcha.org/docs/user-manual/how-to-mcaptcha-without-js/';
 
 	let token = '';
 
 	const setToken = (t: string) => (token = t);
 
 	const w = new CoreWidget(config, setToken);
+	let mcaptchaLabel;
+	let mcaptchaInput;
 
-	onMount(() => w.listen());
+	onMount(() => {
+		mcaptchaLabel.style.display = 'none';
+		mcaptchaInput.style.display = 'none';
+		mcaptchaInput.readonly = true;
+		w.listen();
+	});
 	const cleanup = (): void => w.destroy();
 	onDestroy(() => cleanup);
 </script>
 
 <div class="mcaptcha__widget-container">
-	<label id={INPUT_LABEL_ID} for={INPUT_NAME} data-mcaptcha_url={w.widgetLink.toString()}>
+	<label
+		id={INPUT_LABEL_ID}
+		for={INPUT_NAME}
+		data-mcaptcha_url={w.widgetLink.toString()}
+		bind:this={mcaptchaLabel}
+	>
 		mCaptcha authorization token. <a href={INSTRUCTIONS_URL}>Instructions</a>
-		<input id={INPUT_NAME} name={INPUT_NAME} value={token} readonly hidden required type="text" />
+		<input
+			id={INPUT_NAME}
+			name={INPUT_NAME}
+			value={token}
+			required
+			type="text"
+			bind:this={mcaptchaInput}
+		/>
 	</label>
 	<iframe
 		title="mCaptcha"
