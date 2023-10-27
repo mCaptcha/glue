@@ -12,6 +12,9 @@ import * as lib from '@mcaptcha/core-glue'
 
 export const INPUT_NAME = 'mcaptcha__token'
 export const INPUT_LABEL_ID = 'mcaptcha__token-label'
+export const INSTRUCTIONS_URL =
+  'https://mcaptcha.org/docs/user-manual/how-to-mcaptcha-without-js/'
+
 /**
  * @param {URL?}widgetLink: URL of the widget. Use this only when you are using
  * a self-hosted instance of mCaptcha with a non-standard(unofficial) path(i.e,
@@ -56,17 +59,18 @@ export const MCaptchaWidget = (config: WidgetConfig): ReactElement => {
         data-mcaptcha_url={w.widgetLink.toString()}
         htmlFor={INPUT_NAME}
       >
-        mCaptcha Access token
+        mCaptcha authorization token.{' '}
+        <a href={INSTRUCTIONS_URL}>Instructions</a>.
+        <input
+          ref={input}
+          id={INPUT_NAME}
+          name={INPUT_NAME}
+          value={token}
+          readOnly
+          required
+          type='text'
+        />
       </label>
-      <input
-        ref={input}
-        id={INPUT_NAME}
-        name={INPUT_NAME}
-        value={token}
-        readOnly
-        required
-        type='text'
-      />
       <iframe
         title='mCaptcha'
         src={w.widgetLink.toString()}
