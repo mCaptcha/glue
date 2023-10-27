@@ -45,6 +45,9 @@ export const MCaptchaWidget = (config: WidgetConfig): ReactElement => {
       if (item && item.current) {
         item.current.style.display = 'none'
       }
+      if (input && input.current) {
+        input.current.readOnly = true
+      }
     })
 
     w.listen()
@@ -66,7 +69,6 @@ export const MCaptchaWidget = (config: WidgetConfig): ReactElement => {
           id={INPUT_NAME}
           name={INPUT_NAME}
           value={token}
-          readOnly
           required
           type='text'
         />
