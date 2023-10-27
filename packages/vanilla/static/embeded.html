@@ -16,19 +16,19 @@
         Password
         <input type="password" name="password" id="password" required="" />
       </label>
+
+      <label data-mcaptcha_url="https://demo.mcaptcha.org/widget?sitekey=pHy0AktWyOKuxZDzFfoaewncWecCHo23" for="mcaptcha__token" id="mcaptcha__token-label">
+        mCaptcha authorization token. <a href="https://mcaptcha.org/docs/user-manual/how-to-mcaptcha-without-js/">Instructions</a>.
+        <input type="text" name="mcaptcha__token" id="mcaptcha__token" />
+      </label>
       <div id="mcaptcha__widget-container"></div>
+      <script src="/index.js"></script>
+
       <button type="submit" class="sitekey-form__submit">Sign in</button>
     </form>
   </body>
   <script src="../dist/index.js"></script>
-  <script charset="utf-8">
-    let config = {
-      widgetLink: new URL(
-        "http://localhost:7000/widget/?sitekey=JiL62F7l9hFjhoPIqeMOpMDFuQ1BIz7l"
-      ),
-    };
-    new mcaptchaGlue.default(config);
-  </script>
+
   <style>
     body {
       display: flex;
