@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2023 Aravinth Manivannan <realaravinth@batsense.net>
+//
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: MIT
+
 /**
  * Default CSS definition for typescript,
  * will be overridden with file-specific definitions by rollup
