@@ -82,7 +82,7 @@ export const run = () => {
     new Widget(config);
   } else {
     throw new Error(
-      `Couldn't find "mcaptcha_url" dataset in elmement (ID=${INPUT_LABEL_ID})`
+      `Couldn't find "mcaptcha_url" dataset in element (ID=${INPUT_LABEL_ID})`
     );
   }
 };
