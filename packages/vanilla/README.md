@@ -16,18 +16,20 @@ Add this snippet to the form which requires to be protected using
 mCaptcha
 
 ```html
-<div
-	id="mcaptcha__widget-container"
-></div>
-<script src="../dist/index.js"></script>
-<script charset="utf-8">
-	let config = {
-		widgetLink: new URL(
-			"https://demo.mcaptcha.org/widget/?sitekey=pHy0AktWyOKuxZDzFfoaewncWecCHo23"
-		),
-	};
-	new mcaptchaGlue.default(config);
-</script>
+<label
+  data-mcaptcha_url="{{paste your widget link here}}"
+  for="mcaptcha__token"
+  id="mcaptcha__token-label"
+>
+  mCaptcha authorization token.
+  <a
+	href="https://mcaptcha.org/docs/user-manual/how-to-mcaptcha-without-js/"
+	>Instructions</a
+  >.
+  <input type="text" name="mcaptcha__token" id="mcaptcha__token" />
+</label>
+<div id="mcaptcha__widget-container"></div>
+<script src="https://unpkg.com/@mcaptcha/vanilla-glue@0.1.0-rc2/dist/index.js"></script
 ```
 
 ## Example
