@@ -20,10 +20,11 @@ npm install --save @mcaptcha/react-glue
 
 ## Usage
 
+For React based projects:
 ```tsx
 import React, { Component, WidgetConfig } from 'react'
 
-import MyComponent from 'react-glue'
+import MCaptchaWidget from 'react-glue'
 import 'react-glue/dist/index.css'
 
 class Example extends Component {
@@ -33,7 +34,25 @@ class Example extends Component {
     }
     const config: WidgetConfig = { siteKey }
 
-    return <MyComponent {...config} />
+    return <MCaptchaWidget {...config} />
   }
 }
+```
+
+For Next.JS based projects:
+```jsx
+import React from 'react';
+import { MCaptchaWidget } from '@mcaptcha/react-glue';
+
+function Captcha() {
+    const config = {
+        widgetLink: new URL('https://yourdomain.tld/widget/?sitekey=yourstiekey')
+    };
+
+    return (
+        <MCaptchaWidget {...config} />
+    );
+}
+
+export default Captcha;
 ```
