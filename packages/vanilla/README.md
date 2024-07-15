@@ -29,7 +29,7 @@ mCaptcha
   <input type="text" name="mcaptcha__token" id="mcaptcha__token" />
 </label>
 <div id="mcaptcha__widget-container"></div>
-<script src="https://unpkg.com/@mcaptcha/vanilla-glue@0.1.0-rc2/dist/index.js"></script
+<script src="https://unpkg.com/@mcaptcha/vanilla-glue@0.1.0-rc2/dist/index.js"/>
 ```
 
 ## Example
